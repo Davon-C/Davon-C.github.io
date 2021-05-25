@@ -2,212 +2,121 @@
 <html>
 <head>
 <meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
-<title>nio.md</title><link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}.CodeMirror { height: auto; }
-.CodeMirror-scroll { overflow-y: hidden; overflow-x: auto; }
-.CodeMirror-lines { padding: 4px 0px; }
-.CodeMirror pre { }
-.CodeMirror-scrollbar-filler, .CodeMirror-gutter-filler { background-color: white; }
-.CodeMirror-gutters { border-right: 1px solid rgb(221, 221, 221); background-color: rgb(247, 247, 247); white-space: nowrap; }
-.CodeMirror-linenumbers { }
-.CodeMirror-linenumber { padding: 0px 3px 0px 5px; text-align: right; color: rgb(153, 153, 153); }
-.CodeMirror div.CodeMirror-cursor { border-left: 1px solid black; z-index: 3; }
-.CodeMirror div.CodeMirror-secondarycursor { border-left: 1px solid silver; }
-.CodeMirror.cm-keymap-fat-cursor div.CodeMirror-cursor { width: auto; border: 0px; background: rgb(119, 238, 119); z-index: 1; }
-.CodeMirror div.CodeMirror-cursor.CodeMirror-overwrite { }
-.cm-tab { display: inline-block; }
-.cm-s-typora-default .cm-header, .cm-s-typora-default .cm-property { color: rgb(217, 79, 138); }
-.cm-s-typora-default pre.cm-header1:not(.cm-atom) :not(.cm-overlay) { font-size: 2rem; line-height: 2rem; }
-.cm-s-typora-default pre.cm-header2:not(.cm-atom) :not(.cm-overlay) { font-size: 1.4rem; line-height: 1.4rem; }
-.cm-s-typora-default .cm-atom, .cm-s-typora-default .cm-number { color: rgb(149, 132, 134); }
-.cm-s-typora-default .cm-table-row, .cm-s-typora-default .cm-block-start { font-family: monospace; }
-.cm-s-typora-default .cm-comment, .cm-s-typora-default .cm-code { color: rgb(74, 90, 159); font-family: monospace; }
-.cm-s-typora-default .cm-tag { color: rgb(169, 68, 66); }
-.cm-s-typora-default .cm-string { color: rgb(126, 134, 169); }
-.cm-s-typora-default .cm-link { color: rgb(196, 122, 15); text-decoration: underline; }
-.cm-s-typora-default .cm-variable-2, .cm-s-typora-default .cm-variable-1 { color: inherit; }
-.cm-s-typora-default .cm-overlay { font-family: monospace; }
-.CodeMirror.cm-s-typora-default div.CodeMirror-cursor { border-left: 3px solid rgb(228, 98, 154); }
-.cm-s-typora-default .CodeMirror-activeline-background { left: -60px; right: -30px; background: rgba(204, 204, 204, 0.2); }
-.cm-s-typora-default .CodeMirror-gutters { border-right: none; background-color: inherit; }
-.cm-s-typora-default .cm-trailing-space-new-line::after, .cm-startspace::after, .cm-starttab .cm-tab::after { content: "•"; position: absolute; left: 0px; opacity: 0; font-family: LetterGothicStd, monospace; }
-.os-windows .cm-startspace::after, .os-windows .cm-starttab .cm-tab::after { left: -0.1em; }
-.cm-starttab .cm-tab::after { content: " "; }
-.cm-startspace, .cm-tab, .cm-starttab, .cm-trailing-space-a, .cm-trailing-space-b, .cm-trailing-space-new-line { font-family: monospace; position: relative; }
-.cm-s-typora-default .cm-trailing-space-new-line::after { content: "↓"; opacity: 0.3; }
-.cm-s-inner .cm-keyword { color: rgb(119, 0, 136); }
-.cm-s-inner .cm-atom, .cm-s-inner.cm-atom { color: rgb(34, 17, 153); }
-.cm-s-inner .cm-number { color: rgb(17, 102, 68); }
-.cm-s-inner .cm-def { color: rgb(0, 0, 255); }
-.cm-s-inner .cm-variable { color: black; }
-.cm-s-inner .cm-variable-2 { color: rgb(0, 85, 170); }
-.cm-s-inner .cm-variable-3 { color: rgb(0, 136, 85); }
-.cm-s-inner .cm-property { color: black; }
-.cm-s-inner .cm-operator { color: rgb(152, 26, 26); }
-.cm-s-inner .cm-comment, .cm-s-inner.cm-comment { color: rgb(170, 85, 0); }
-.cm-s-inner .cm-string { color: rgb(170, 17, 17); }
-.cm-s-inner .cm-string-2 { color: rgb(255, 85, 0); }
-.cm-s-inner .cm-meta { color: rgb(85, 85, 85); }
-.cm-s-inner .cm-qualifier { color: rgb(85, 85, 85); }
-.cm-s-inner .cm-builtin { color: rgb(51, 0, 170); }
-.cm-s-inner .cm-bracket { color: rgb(153, 153, 119); }
-.cm-s-inner .cm-tag { color: rgb(17, 119, 0); }
-.cm-s-inner .cm-attribute { color: rgb(0, 0, 204); }
-.cm-s-inner .cm-header, .cm-s-inner.cm-header { color: blue; }
-.cm-s-inner .cm-quote, .cm-s-inner.cm-quote { color: rgb(0, 153, 0); }
-.cm-s-inner .cm-hr, .cm-s-inner.cm-hr { color: rgb(153, 153, 153); }
-.cm-s-inner .cm-link, .cm-s-inner.cm-link { color: rgb(0, 0, 204); }
-.cm-negative { color: rgb(221, 68, 68); }
-.cm-positive { color: rgb(34, 153, 34); }
-.cm-header, .cm-strong { font-weight: bold; }
-.cm-del { text-decoration: line-through; }
-.cm-em { font-style: italic; }
-.cm-link { text-decoration: underline; }
-.cm-error { color: rgb(255, 0, 0); }
-.cm-invalidchar { color: rgb(255, 0, 0); }
-.cm-constant { color: rgb(38, 139, 210); }
-.cm-defined { color: rgb(181, 137, 0); }
-div.CodeMirror span.CodeMirror-matchingbracket { color: rgb(0, 255, 0); }
-div.CodeMirror span.CodeMirror-nonmatchingbracket { color: rgb(255, 34, 34); }
-.cm-s-inner .CodeMirror-activeline-background { background: inherit; }
-.CodeMirror { position: relative; overflow: hidden; }
-.CodeMirror-scroll { margin-bottom: -30px; margin-right: -30px; padding-bottom: 30px; padding-right: 30px; height: 100%; outline: none; position: relative; box-sizing: content-box; }
-.CodeMirror-sizer { position: relative; }
-.CodeMirror-vscrollbar, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-gutter-filler { position: absolute; z-index: 6; display: none; }
-.CodeMirror-vscrollbar { right: 0px; top: 0px; overflow-x: hidden; overflow-y: scroll; }
-.CodeMirror-hscrollbar { bottom: 0px; left: 0px; overflow-y: hidden; overflow-x: scroll; }
-.CodeMirror-scrollbar-filler { right: 0px; bottom: 0px; }
-.CodeMirror-gutter-filler { left: 0px; bottom: 0px; }
-.CodeMirror-gutters { position: absolute; left: 0px; top: 0px; padding-bottom: 30px; z-index: 3; }
-.CodeMirror-gutter { white-space: normal; height: 100%; box-sizing: content-box; padding-bottom: 30px; margin-bottom: -32px; display: inline-block; }
-.CodeMirror-gutter-wrapper { position: absolute; z-index: 4; background: none !important; border: none !important; }
-.CodeMirror-gutter-background { position: absolute; top: 0px; bottom: 0px; z-index: 4; }
-.CodeMirror-gutter-elt { position: absolute; cursor: default; z-index: 4; }
-.CodeMirror-lines { cursor: text; }
-.CodeMirror pre { border-radius: 0px; border-width: 0px; background: transparent; font-family: inherit; font-size: inherit; margin: 0px; white-space: pre; word-wrap: normal; color: inherit; z-index: 2; position: relative; overflow: visible; }
-.CodeMirror-wrap pre { word-wrap: break-word; white-space: pre-wrap; word-break: normal; }
-.CodeMirror-code pre { border-right: 30px solid transparent; width: fit-content; }
-.CodeMirror-wrap .CodeMirror-code pre { border-right: none; width: auto; }
-.CodeMirror-linebackground { position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px; z-index: 0; }
-.CodeMirror-linewidget { position: relative; z-index: 2; overflow: auto; }
-.CodeMirror-widget { }
-.CodeMirror-wrap .CodeMirror-scroll { overflow-x: hidden; }
-.CodeMirror-measure { position: absolute; width: 100%; height: 0px; overflow: hidden; visibility: hidden; }
-.CodeMirror-measure pre { position: static; }
-.CodeMirror div.CodeMirror-cursor { position: absolute; visibility: hidden; border-right: none; width: 0px; }
-.CodeMirror div.CodeMirror-cursor { visibility: hidden; }
-.CodeMirror-focused div.CodeMirror-cursor { visibility: inherit; }
-.CodeMirror-selected { background: rgb(217, 217, 217); }
-.CodeMirror-focused .CodeMirror-selected { background: rgb(215, 212, 240); }
-.cm-searching { background: rgba(255, 255, 0, 0.4); }
-.CodeMirror span { }
-@media print {
-  .CodeMirror div.CodeMirror-cursor { visibility: hidden; }
-}
-.CodeMirror-lint-markers { width: 16px; }
-.CodeMirror-lint-tooltip { background-color: infobackground; border: 1px solid black; border-radius: 4px; color: infotext; font-family: monospace; overflow: hidden; padding: 2px 5px; position: fixed; white-space: pre-wrap; z-index: 10000; max-width: 600px; opacity: 0; transition: opacity 0.4s; font-size: 0.8em; }
-.CodeMirror-lint-mark-error, .CodeMirror-lint-mark-warning { background-position: left bottom; background-repeat: repeat-x; }
-.CodeMirror-lint-mark-error { background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAADCAYAAAC09K7GAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9sJDw4cOCW1/KIAAAAZdEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIEdJTVBXgQ4XAAAAHElEQVQI12NggIL/DAz/GdA5/xkY/qPKMDAwAADLZwf5rvm+LQAAAABJRU5ErkJggg=="); }
-.CodeMirror-lint-marker-error, .CodeMirror-lint-marker-warning { background-position: center center; background-repeat: no-repeat; cursor: pointer; display: inline-block; height: 16px; width: 16px; vertical-align: middle; position: relative; }
-.CodeMirror-lint-message-error, .CodeMirror-lint-message-warning { padding-left: 18px; background-position: left top; background-repeat: no-repeat; }
-.CodeMirror-lint-marker-error, .CodeMirror-lint-message-error { background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAHlBMVEW7AAC7AACxAAC7AAC7AAAAAAC4AAC5AAD///+7AAAUdclpAAAABnRSTlMXnORSiwCK0ZKSAAAATUlEQVR42mWPOQ7AQAgDuQLx/z8csYRmPRIFIwRGnosRrpamvkKi0FTIiMASR3hhKW+hAN6/tIWhu9PDWiTGNEkTtIOucA5Oyr9ckPgAWm0GPBog6v4AAAAASUVORK5CYII="); }
-.CodeMirror-lint-marker-warning, .CodeMirror-lint-message-warning { background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAANlBMVEX/uwDvrwD/uwD/uwD/uwD/uwD/uwD/uwD/uwD6twD/uwAAAADurwD2tQD7uAD+ugAAAAD/uwDhmeTRAAAADHRSTlMJ8mN1EYcbmiixgACm7WbuAAAAVklEQVR42n3PUQqAIBBFUU1LLc3u/jdbOJoW1P08DA9Gba8+YWJ6gNJoNYIBzAA2chBth5kLmG9YUoG0NHAUwFXwO9LuBQL1giCQb8gC9Oro2vp5rncCIY8L8uEx5ZkAAAAASUVORK5CYII="); }
-.CodeMirror-lint-marker-multiple { background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAMAAADzjKfhAAAACVBMVEUAAAAAAAC/v7914kyHAAAAAXRSTlMAQObYZgAAACNJREFUeNo1ioEJAAAIwmz/H90iFFSGJgFMe3gaLZ0od+9/AQZ0ADosbYraAAAAAElFTkSuQmCC"); background-repeat: no-repeat; background-position: right bottom; width: 100%; height: 100%; }
 
-
-:root { --bg-color: #ffffff; --text-color: #333333; --code-block-bg-color: inherit; }
+<style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
+.mac-os-11 { --title-bar-height:28px; }
 html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
-body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; }
+body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
 a:active, a:hover { outline: 0px; }
-.in-text-selection, ::selection { background: rgb(181, 214, 252); text-shadow: none; }
-#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; word-wrap: break-word; position: relative; padding-bottom: 70px; white-space: pre-wrap; overflow-x: visible; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
 .for-image #write { padding-left: 8px; padding-right: 8px; }
 body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
 @media screen and (max-width: 500px) {
   body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
   .CodeMirror-sizer { margin-left: 0px !important; }
   .CodeMirror-gutters { display: none !important; }
 }
-.typora-export #write { margin: 0px auto; }
-#write > p:first-child, #write > ul:first-child, #write > ol:first-child, #write > pre:first-child, #write > blockquote:first-child, #write > div:first-child, #write > table:first-child { margin-top: 30px; }
-#write li > table:first-child { margin-top: -20px; }
-img { max-width: 100%; vertical-align: middle; }
-input, button, select, textarea { color: inherit; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; font-size: inherit; line-height: inherit; font-family: inherit; }
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
 input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
-::before, ::after, * { box-sizing: border-box; }
-#write p, #write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write div, #write pre { width: inherit; }
-#write p, #write h1, #write h2, #write h3, #write h4, #write h5, #write h6 { position: relative; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
 h1 { font-size: 2rem; }
 h2 { font-size: 1.8rem; }
 h3 { font-size: 1.6rem; }
 h4 { font-size: 1.4rem; }
 h5 { font-size: 1.2rem; }
 h6 { font-size: 1rem; }
-p { -webkit-margin-before: 1rem; -webkit-margin-after: 1rem; -webkit-margin-start: 0px; -webkit-margin-end: 0px; }
-.typora-export p { white-space: normal; }
-.mathjax-block { margin-top: 0px; margin-bottom: 0px; -webkit-margin-before: 0rem; -webkit-margin-after: 0rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
 .hidden { display: none; }
-.md-blockmeta { color: rgb(204, 204, 204); font-weight: bold; font-style: italic; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
 a { cursor: pointer; }
-sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; }
-#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; margin: 4px 0px 0px; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
 tr { break-inside: avoid; break-after: auto; }
 thead { display: table-header-group; }
 table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
-table.md-table td { min-width: 80px; }
+table.md-table td { min-width: 32px; }
 .CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
 .CodeMirror { text-align: left; }
 .CodeMirror-placeholder { opacity: 0.3; }
 .CodeMirror pre { padding: 0px 4px; }
 .CodeMirror-lines { padding: 0px; }
 div.hr:focus { cursor: none; }
-pre { white-space: pre-wrap; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
 .CodeMirror-gutters { margin-right: 4px; }
-.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: var(--code-block-bg-color); position: relative !important; }
-.md-diagram-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
-.md-fences .CodeMirror.CodeMirror-wrap { top: -1.6em; margin-bottom: -1.6em; }
-.md-fences.mock-cm { white-space: pre-wrap; }
-.show-fences-line-number .md-fences { padding-left: 0px; }
-.show-fences-line-number .md-fences.mock-cm { padding-left: 40px; }
-.footnotes { opacity: 0.8; font-size: 0.9rem; padding-top: 1em; padding-bottom: 1em; }
-.footnotes + .footnotes { margin-top: -1em; }
-.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: transparent; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: normal; text-align: left; box-sizing: content-box; direction: ltr; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
 li div { padding-top: 0px; }
 blockquote { margin: 1rem 0px; }
-li p, li .mathjax-block { margin: 0.5rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
 li { margin: 0px; position: relative; }
 blockquote > :last-child { margin-bottom: 0px; }
-blockquote > :first-child { margin-top: 0px; }
-.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
 @media print {
-  html, body { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; }
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
   .typora-export * { -webkit-print-color-adjust: exact; }
-  h1, h2, h3, h4, h5, h6 { break-after: avoid-page; orphans: 2; }
-  p { orphans: 4; }
-  html.blink-to-pdf { font-size: 13px; }
-  .typora-export #write { padding-left: 1cm; padding-right: 1cm; padding-bottom: 0px; break-after: avoid; }
+  .typora-export #write { break-after: avoid; }
   .typora-export #write::after { height: 0px; }
-  @page { margin: 20mm 0mm; }
+  .is-mac table { break-inside: avoid; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
 }
 .footnote-line { margin-top: 0.714em; font-size: 0.7em; }
 a img, img a { cursor: pointer; }
-pre.md-meta-block { font-size: 0.8rem; min-height: 2.86rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
-p .md-image:only-child { display: inline-block; width: 100%; text-align: center; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
 #write .MathJax_Display { margin: 0.8em 0px 0px; }
-.mathjax-block { white-space: pre; overflow: hidden; width: 100%; }
-p + .mathjax-block { margin-top: -1.143rem; }
-.mathjax-block:not(:empty)::after { display: none; }
-[contenteditable="true"]:active, [contenteditable="true"]:focus { outline: none; box-shadow: none; }
-.task-list { list-style-type: none; }
-.task-list-item { position: relative; padding-left: 1em; }
-.task-list-item input { position: absolute; top: 0px; left: 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
 .math { font-size: 1rem; }
 .md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
 .md-toc-content { position: relative; margin-left: 0px; }
-.md-toc::after, .md-toc-content::after { display: none; }
-.md-toc-item { display: block; color: rgb(65, 131, 196); text-decoration: none; }
-.md-toc-inner:hover { }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
 .md-toc-inner { display: inline-block; cursor: pointer; }
-.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: bold; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
 .md-toc-h2 .md-toc-inner { margin-left: 2em; }
 .md-toc-h3 .md-toc-inner { margin-left: 4em; }
 .md-toc-h4 .md-toc-inner { margin-left: 6em; }
@@ -223,111 +132,1049 @@ a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; 
 .footnote-line a:not(.reversefootnote) { color: inherit; }
 .md-attr { display: none; }
 .md-fn-count::after { content: "."; }
-.md-tag { opacity: 0.5; }
-.md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: monospace; }
-code { text-align: left; }
-h1 .md-tag, h2 .md-tag, h3 .md-tag, h4 .md-tag, h5 .md-tag, h6 .md-tag { font-weight: initial; opacity: 0.35; }
-a.md-print-anchor { border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: none !important; background: transparent !important; text-decoration: initial !important; text-shadow: initial !important; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
 .md-inline-math .MathJax_SVG .noError { display: none !important; }
-.mathjax-block .MathJax_SVG_Display { text-align: center; margin: 1em 0em; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; display: block !important; }
+.html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
+.md-fences-math .MathJax_SVG_Display, .md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: visible; display: block !important; }
 .MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
-.MathJax_SVG .MJX-monospace { font-family: monospace; }
+.MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
 .MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
-.MathJax_SVG { display: inline; font-style: normal; font-weight: normal; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
-.MathJax_SVG * { transition: none; }
+.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; zoom: 90%; }
+#math-inline-preview-content { zoom: 1.1; }
+.MathJax_SVG * { transition: none 0s ease 0s; }
+.MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; margin-top: 0px !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
 .md-diagram-panel > svg { max-width: 100%; }
-[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; }
-
-
-:root { --side-bar-bg-color: #fafafa; --control-text-color: #777; }
-@font-face { font-family: "Open Sans"; font-style: normal; font-weight: normal; src: local("Open Sans Regular"), url("./github/400.woff") format("woff"); }
-@font-face { font-family: "Open Sans"; font-style: italic; font-weight: normal; src: local("Open Sans Italic"), url("./github/400i.woff") format("woff"); }
-@font-face { font-family: "Open Sans"; font-style: normal; font-weight: bold; src: local("Open Sans Bold"), url("./github/700.woff") format("woff"); }
-@font-face { font-family: "Open Sans"; font-style: italic; font-weight: bold; src: local("Open Sans Bold Italic"), url("./github/700i.woff") format("woff"); }
-html { font-size: 16px; }
-body { font-family: "Open Sans", "Clear Sans", "Helvetica Neue", Helvetica, Arial, sans-serif; color: rgb(51, 51, 51); line-height: 1.6; }
-#write { max-width: 860px; margin: 0px auto; padding: 20px 30px 100px; }
-#write > ul:first-child, #write > ol:first-child { margin-top: 30px; }
-body > :first-child { margin-top: 0px !important; }
-body > :last-child { margin-bottom: 0px !important; }
-a { color: rgb(65, 131, 196); }
-h1, h2, h3, h4, h5, h6 { position: relative; margin-top: 1rem; margin-bottom: 1rem; font-weight: bold; line-height: 1.4; cursor: text; }
-h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor { text-decoration: none; }
-h1 tt, h1 code { font-size: inherit; }
-h2 tt, h2 code { font-size: inherit; }
-h3 tt, h3 code { font-size: inherit; }
-h4 tt, h4 code { font-size: inherit; }
-h5 tt, h5 code { font-size: inherit; }
-h6 tt, h6 code { font-size: inherit; }
-h1 { padding-bottom: 0.3em; font-size: 2.25em; line-height: 1.2; border-bottom: 1px solid rgb(238, 238, 238); }
-h2 { padding-bottom: 0.3em; font-size: 1.75em; line-height: 1.225; border-bottom: 1px solid rgb(238, 238, 238); }
-h3 { font-size: 1.5em; line-height: 1.43; }
-h4 { font-size: 1.25em; }
-h5 { font-size: 1em; }
-h6 { font-size: 1em; color: rgb(119, 119, 119); }
-p, blockquote, ul, ol, dl, table { margin: 0.8em 0px; }
-li > ol, li > ul { margin: 0px; }
-hr { height: 4px; padding: 0px; margin: 16px 0px; background-color: rgb(231, 231, 231); border-width: 0px 0px 1px; border-style: none none solid; border-top-color: initial; border-right-color: initial; border-left-color: initial; border-image: initial; overflow: hidden; box-sizing: content-box; border-bottom-color: rgb(221, 221, 221); }
-body > h2:first-child { margin-top: 0px; padding-top: 0px; }
-body > h1:first-child { margin-top: 0px; padding-top: 0px; }
-body > h1:first-child + h2 { margin-top: 0px; padding-top: 0px; }
-body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child { margin-top: 0px; padding-top: 0px; }
-a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 { margin-top: 0px; padding-top: 0px; }
-h1 p, h2 p, h3 p, h4 p, h5 p, h6 p { margin-top: 0px; }
-li p.first { display: inline-block; }
-ul, ol { padding-left: 30px; }
-ul:first-child, ol:first-child { margin-top: 0px; }
-ul:last-child, ol:last-child { margin-bottom: 0px; }
-blockquote { border-left: 4px solid rgb(221, 221, 221); padding: 0px 15px; color: rgb(119, 119, 119); }
-blockquote blockquote { padding-right: 0px; }
-table { padding: 0px; word-break: initial; }
-table tr { border-top: 1px solid rgb(204, 204, 204); margin: 0px; padding: 0px; }
-table tr:nth-child(2n) { background-color: rgb(248, 248, 248); }
-table tr th { font-weight: bold; border: 1px solid rgb(204, 204, 204); text-align: left; margin: 0px; padding: 6px 13px; }
-table tr td { border: 1px solid rgb(204, 204, 204); text-align: left; margin: 0px; padding: 6px 13px; }
-table tr th:first-child, table tr td:first-child { margin-top: 0px; }
-table tr th:last-child, table tr td:last-child { margin-bottom: 0px; }
-.CodeMirror-gutters { border-right: 1px solid rgb(221, 221, 221); }
-.md-fences, code, tt { border: 1px solid rgb(221, 221, 221); background-color: rgb(248, 248, 248); border-radius: 3px; font-family: Consolas, "Liberation Mono", Courier, monospace; padding: 2px 4px 0px; font-size: 0.9em; }
-.md-fences { margin-bottom: 15px; margin-top: 15px; padding: 8px 1em 6px; }
-.task-list { padding-left: 0px; }
-.task-list-item { padding-left: 32px; }
-.task-list-item input { top: 3px; left: 8px; }
-@media screen and (min-width: 914px) {
-}
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
 @media print {
-  html { font-size: 13px; }
-  table, pre { break-inside: avoid; }
-  pre { word-wrap: break-word; }
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
 }
-.md-fences { background-color: rgb(248, 248, 248); }
-#write pre.md-meta-block { padding: 1rem; font-size: 85%; line-height: 1.45; background-color: rgb(247, 247, 247); border: 0px; border-radius: 3px; color: rgb(119, 119, 119); margin-top: 0px !important; }
-.mathjax-block > .code-tooltip { bottom: 0.375rem; }
-#write > h3.md-focus::before { left: -1.5625rem; top: 0.375rem; }
-#write > h4.md-focus::before { left: -1.5625rem; top: 0.285714rem; }
-#write > h5.md-focus::before { left: -1.5625rem; top: 0.285714rem; }
-#write > h6.md-focus::before { left: -1.5625rem; top: 0.285714rem; }
-.md-image > .md-meta { border: 1px solid rgb(221, 221, 221); border-radius: 3px; font-family: Consolas, "Liberation Mono", Courier, monospace; padding: 2px 4px 0px; font-size: 0.9em; color: inherit; }
-.md-tag { color: inherit; }
-.md-toc { margin-top: 20px; padding-bottom: 20px; }
-.sidebar-tabs { border-bottom: none; }
-#typora-quick-open { border: 1px solid rgb(221, 221, 221); background-color: rgb(248, 248, 248); }
-#typora-quick-open-item { background-color: rgb(250, 250, 250); border-color: rgb(254, 254, 254) rgb(229, 229, 229) rgb(229, 229, 229) rgb(238, 238, 238); border-style: solid; border-width: 1px; }
-#md-notification::before { top: 10px; }
-.on-focus-mode blockquote { border-left-color: rgba(85, 85, 85, 0.12); }
-header, .context-menu, .megamenu-content, footer { font-family: "Segoe UI", Arial, sans-serif; }
-.file-node-content:hover .file-node-icon, .file-node-content:hover .file-node-open-state { visibility: visible; }
-.mac-seamless-mode #typora-sidebar { background-color: var(--side-bar-bg-color); }
-.md-lang { color: rgb(180, 101, 77); }
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-require-zoom-fix foreignobject { font-size: var(--mermaid-font-zoom); }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-math .MathJax_SVG_Display { margin-top: 8px; cursor: default; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex:2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.42857rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left: 28px solid transparent; border-right: 28px solid transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right: 8px solid transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
 
 
+.CodeMirror { height: auto; }
+.CodeMirror.cm-s-inner { background: inherit; }
+.CodeMirror-scroll { overflow: auto hidden; z-index: 3; }
+.CodeMirror-gutter-filler, .CodeMirror-scrollbar-filler { background-color: rgb(255, 255, 255); }
+.CodeMirror-gutters { border-right: 1px solid rgb(221, 221, 221); background: inherit; white-space: nowrap; }
+.CodeMirror-linenumber { padding: 0px 3px 0px 5px; text-align: right; color: rgb(153, 153, 153); }
+.cm-s-inner .cm-keyword { color: rgb(119, 0, 136); }
+.cm-s-inner .cm-atom, .cm-s-inner.cm-atom { color: rgb(34, 17, 153); }
+.cm-s-inner .cm-number { color: rgb(17, 102, 68); }
+.cm-s-inner .cm-def { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-variable { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-variable-2 { color: rgb(0, 85, 170); }
+.cm-s-inner .cm-variable-3 { color: rgb(0, 136, 85); }
+.cm-s-inner .cm-string { color: rgb(170, 17, 17); }
+.cm-s-inner .cm-property { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-operator { color: rgb(152, 26, 26); }
+.cm-s-inner .cm-comment, .cm-s-inner.cm-comment { color: rgb(170, 85, 0); }
+.cm-s-inner .cm-string-2 { color: rgb(255, 85, 0); }
+.cm-s-inner .cm-meta { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-qualifier { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-builtin { color: rgb(51, 0, 170); }
+.cm-s-inner .cm-bracket { color: rgb(153, 153, 119); }
+.cm-s-inner .cm-tag { color: rgb(17, 119, 0); }
+.cm-s-inner .cm-attribute { color: rgb(0, 0, 204); }
+.cm-s-inner .cm-header, .cm-s-inner.cm-header { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-quote, .cm-s-inner.cm-quote { color: rgb(0, 153, 0); }
+.cm-s-inner .cm-hr, .cm-s-inner.cm-hr { color: rgb(153, 153, 153); }
+.cm-s-inner .cm-link, .cm-s-inner.cm-link { color: rgb(0, 0, 204); }
+.cm-negative { color: rgb(221, 68, 68); }
+.cm-positive { color: rgb(34, 153, 34); }
+.cm-header, .cm-strong { font-weight: 700; }
+.cm-del { text-decoration: line-through; }
+.cm-em { font-style: italic; }
+.cm-link { text-decoration: underline; }
+.cm-error { color: red; }
+.cm-invalidchar { color: red; }
+.cm-constant { color: rgb(38, 139, 210); }
+.cm-defined { color: rgb(181, 137, 0); }
+div.CodeMirror span.CodeMirror-matchingbracket { color: rgb(0, 255, 0); }
+div.CodeMirror span.CodeMirror-nonmatchingbracket { color: rgb(255, 34, 34); }
+.cm-s-inner .CodeMirror-activeline-background { background: inherit; }
+.CodeMirror { position: relative; overflow: hidden; }
+.CodeMirror-scroll { height: 100%; outline: 0px; position: relative; box-sizing: content-box; background: inherit; }
+.CodeMirror-sizer { position: relative; }
+.CodeMirror-gutter-filler, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-vscrollbar { position: absolute; z-index: 6; display: none; }
+.CodeMirror-vscrollbar { right: 0px; top: 0px; overflow: hidden; }
+.CodeMirror-hscrollbar { bottom: 0px; left: 0px; overflow: hidden; }
+.CodeMirror-scrollbar-filler { right: 0px; bottom: 0px; }
+.CodeMirror-gutter-filler { left: 0px; bottom: 0px; }
+.CodeMirror-gutters { position: absolute; left: 0px; top: 0px; padding-bottom: 30px; z-index: 3; }
+.CodeMirror-gutter { white-space: normal; height: 100%; box-sizing: content-box; padding-bottom: 30px; margin-bottom: -32px; display: inline-block; }
+.CodeMirror-gutter-wrapper { position: absolute; z-index: 4; background: 0px 0px !important; border: none !important; }
+.CodeMirror-gutter-background { position: absolute; top: 0px; bottom: 0px; z-index: 4; }
+.CodeMirror-gutter-elt { position: absolute; cursor: default; z-index: 4; }
+.CodeMirror-lines { cursor: text; }
+.CodeMirror pre { border-radius: 0px; border-width: 0px; background: 0px 0px; font-family: inherit; font-size: inherit; margin: 0px; white-space: pre; overflow-wrap: normal; color: inherit; z-index: 2; position: relative; overflow: visible; }
+.CodeMirror-wrap pre { overflow-wrap: break-word; white-space: pre-wrap; word-break: normal; }
+.CodeMirror-code pre { border-right: 30px solid transparent; width: fit-content; }
+.CodeMirror-wrap .CodeMirror-code pre { border-right: none; width: auto; }
+.CodeMirror-linebackground { position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px; z-index: 0; }
+.CodeMirror-linewidget { position: relative; z-index: 2; overflow: auto; }
+.CodeMirror-wrap .CodeMirror-scroll { overflow-x: hidden; }
+.CodeMirror-measure { position: absolute; width: 100%; height: 0px; overflow: hidden; visibility: hidden; }
+.CodeMirror-measure pre { position: static; }
+.CodeMirror div.CodeMirror-cursor { position: absolute; visibility: hidden; border-right: none; width: 0px; }
+.CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+.CodeMirror-focused div.CodeMirror-cursor { visibility: inherit; }
+.cm-searching { background: rgba(255, 255, 0, 0.4); }
+span.cm-underlined { text-decoration: underline; }
+span.cm-strikethrough { text-decoration: line-through; }
+.cm-tw-syntaxerror { color: rgb(255, 255, 255); background-color: rgb(153, 0, 0); }
+.cm-tw-deleted { text-decoration: line-through; }
+.cm-tw-header5 { font-weight: 700; }
+.cm-tw-listitem:first-child { padding-left: 10px; }
+.cm-tw-box { border-style: solid; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-color: inherit; border-top-width: 0px !important; }
+.cm-tw-underline { text-decoration: underline; }
+@media print {
+  .CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+}
 
 
+html {
+  font-size: 19px;
+}
+
+html,
+body {
+  font-family: "Times New Roman", Times, Georgia, serif;
+  text-align: justify;
+  overflow-x: hidden;
+  color: #abc0d0;
+  background-color: #181a1b;
+  -webkit-font-smoothing: antialiased;
+}
+
+content #write {
+  background-color: #181a1b;
+  max-width: 90%;
+  margin: 0 auto;
+  padding-bottom: 7.5rem;
+}
+
+content #write p {
+  word-spacing: 0.05rem;
+}
+
+content #write ol li {
+  padding-left: 0.5rem;
+}
+
+content #write > h1:first-child {
+  font-weight: normal;
+}
+
+content #write > h5.md-focus:before {
+  top: 2px;
+}
+
+::-moz-selection {
+  background-color: #67769660;
+}
+
+::selection {
+  background-color: #67769660;
+}
+
+/* h1-h3 */
+#write h1,
+#write h2,
+#write h3 {
+  font-style: italic;
+}
+
+#write h1,
+#write h2 {
+  text-align: center;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+#write h1 {
+  font-size: 3rem;
+}
+
+#write h2 {
+  font-size: 2.4rem;
+}
+
+#write h2:after {
+  content: "";
+  display: block;
+  width: 5.26316rem;
+  height: 1px;
+  margin: 0 auto;
+  border-bottom: 1px solid #abc0d0;
+}
+
+#write h3 {
+  font-size: 1.8rem;
+}
+
+/* paragraph */
+p {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+/* ul ol */
+ul,
+ol {
+  padding-left: 1.75rem;
+}
+
+ul:first-child,
+ol:first-child {
+  margin-top: 0;
+}
+
+ul:last-child,
+ol:last-child {
+  margin-bottom: 0;
+}
+
+/* blockquote */
+blockquote {
+  padding: 0.5rem 1rem;
+  border-left: 8px solid #2f845e;
+  background-color: #222526;
+  border-radius: 4px;
+}
+
+/* horizontal line */
+hr {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  border-top: 2px dashed #abb2bf;
+}
+
+/* table */
+.md-table-fig .md-table {
+  border: 1px solid #2f845e;
+  border-radius: 6px;
+  border-collapse: separate;
+  overflow: hidden;
+}
+
+.md-table-fig .md-table th,
+.md-table-fig .md-table td {
+  padding: 10px 16px;
+  border-top: 1px solid #2f845e;
+  border-left: 1px solid #2f845e;
+}
+
+.md-table-fig .md-table th:first-child,
+.md-table-fig .md-table td:first-child {
+  border-left: 0;
+}
+
+.md-table-fig .md-table thead {
+  background-color: #2f845e;
+  color: #000;
+}
+
+.md-table-fig .md-table caption + thead tr:first-child th,
+.md-table-fig .md-table caption + thead tr:first-child td,
+.md-table-fig .md-table colgroup + thead tr:first-child th,
+.md-table-fig .md-table colgroup + thead tr:first-child td,
+.md-table-fig .md-table thead + tbody tr:first-child th,
+.md-table-fig .md-table thead + tbody tr:first-child td,
+.md-table-fig .md-table thead:first-child tr:first-child th,
+.md-table-fig .md-table thead:first-child tr:first-child td {
+  border-top: 0;
+}
+
+.md-table-fig .md-table tbody + tbody {
+  border-top: 2px solid #2f845e;
+}
+
+.md-table-fig .md-table-edit {
+  background-color: #222526;
+}
+
+.md-table-fig .md-table-edit .btn-default:hover {
+  background-color: #3e4249;
+}
+
+.md-table-fig .md-table-edit .md-table-resize-popover {
+  -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+          box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  border: none;
+  padding: 0;
+  background-color: transparent;
+}
+
+.md-table-fig .md-table-edit .md-table-resize-popover .arrow {
+  top: -10px;
+}
+
+.md-table-fig .md-table-edit .md-table-resize-popover .arrow::after {
+  border-bottom-color: #222526;
+}
+
+.md-table-fig .md-table-edit .md-table-resize-popover .md-reset {
+  border-radius: 6px;
+  background-color: #222526;
+}
+
+.md-table-fig .md-table-edit .md-table-resize-popover .md-reset input {
+  color: #abc0d0 !important;
+}
+
+.md-table-fig .md-table-edit .md-table-resize-popover .md-reset input#md-grid-width, .md-table-fig .md-table-edit .md-table-resize-popover .md-reset input#md-grid-height {
+  text-align: center;
+}
+
+.md-table-fig .md-table-edit .md-table-resize-popover .popover-title {
+  border-top: 1px solid rgba(171, 192, 208, 0.1);
+}
+
+#table-insert-dialog .modal-content {
+  background-color: #222526;
+  border: none;
+  border-radius: 6px;
+}
+
+#table-insert-dialog .modal-content .btn-default:hover {
+  background-color: #3e4249;
+}
+
+/* yaml front matter */
+#write pre.md-meta-block {
+  background: #222526;
+  color: #86a5c3;
+  -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+          box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  border: 0;
+  border-radius: 6px;
+  line-height: 1.3rem;
+  padding: 0.5rem 1.5rem;
+  margin-top: -1rem;
+  margin-bottom: 2rem;
+}
+
+/* table of contents */
+.md-toc {
+  margin-bottom: 1.05263rem;
+}
+
+/* task list */
+.md-task-list-item > input::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -4px;
+  border-radius: 50%;
+  width: 1.1rem;
+  height: 1.1rem;
+  border: 1px solid #abc0d0;
+  background: #222526;
+  -webkit-transition: background-color 200ms ease-in-out;
+  transition: background-color 200ms ease-in-out;
+}
+
+.md-task-list-item > input::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 1px;
+  width: 0.6rem;
+  height: 0.3rem;
+  border: 2px solid #fff;
+  border-top: 0;
+  border-right: 0;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  opacity: 0;
+  -webkit-transition: opacity 200ms ease-in-out;
+  transition: opacity 200ms ease-in-out;
+}
+
+.md-task-list-item > input:checked::before {
+  background-color: #67c23a;
+  border: none;
+}
+
+.md-task-list-item > input:checked::after {
+  opacity: 1;
+}
+
+.md-task-list-item.task-list-done {
+  text-decoration: line-through;
+  color: #999;
+}
+
+/* footnote */
+.footnotes {
+  font-size: 1rem;
+}
+
+/* math,html block common */
+.mathjax-block,
+.md-htmlblock {
+  -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+          box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  border-radius: 6px;
+  background-color: #222526;
+}
+
+.mathjax-block[contenteditable="false"]:active, .mathjax-block[contenteditable="false"]:focus,
+.md-htmlblock[contenteditable="false"]:active,
+.md-htmlblock[contenteditable="false"]:focus {
+  -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+          box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.mathjax-block:hover .md-rawblock-container,
+.mathjax-block:hover .md-rawblock-tooltip,
+.md-htmlblock:hover .md-rawblock-container,
+.md-htmlblock:hover .md-rawblock-tooltip {
+  background-color: #222526;
+  -webkit-animation: showRawBlockTooltip 0s linear;
+          animation: showRawBlockTooltip 0s linear;
+}
+
+.mathjax-block:hover .md-rawblock-container,
+.md-htmlblock:hover .md-rawblock-container {
+  border-radius: 6px 0 6px 6px;
+}
+
+.mathjax-block .md-rawblock-control,
+.md-htmlblock .md-rawblock-control {
+  background-color: #222526;
+}
+
+.mathjax-block .md-rawblock-tooltip,
+.md-htmlblock .md-rawblock-tooltip {
+  background-color: #222526;
+  -webkit-animation: showRawBlockTooltip 0s linear;
+          animation: showRawBlockTooltip 0s linear;
+  border-radius: 4px 4px 0 0;
+}
+
+.mathjax-block .md-mathblock-panel .code-tooltip[contenteditable="false"] {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.mathjax-block .md-mathblock-panel .md-rawblock-before {
+  padding-top: 6px;
+  border-top-left-radius: 6px;
+}
+
+.mathjax-block .md-mathblock-panel .md-rawblock-after {
+  padding-bottom: 6px;
+}
+
+.mathjax-block .md-mathblock-panel .md-rawblock-input .cm-s-inner .CodeMirror-lines {
+  color: #abb2bf;
+}
+
+.mathjax-block .md-mathblock-panel .md-rawblock-input .cm-s-inner .CodeMirror-gutters {
+  background-color: #222526;
+}
+
+.mathjax-block .md-math-container {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.md-htmlblock .md-htmlblock-panel {
+  border-radius: 6px;
+  border-top-right-radius: 0;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+.md-htmlblock .md-htmlblock-panel .md-rawblock-input {
+  padding-top: 14px;
+  padding-bottom: 10px;
+}
+
+/* strong */
+strong {
+  background-color: inherit;
+  color: #b5302e;
+}
+
+/* emphasis */
+em {
+  background-color: inherit;
+  color: #949415;
+}
+
+/* underline */
+u {
+  background-color: inherit;
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 2px solid #f00;
+  padding-bottom: 1px;
+}
+
+/* code */
+code {
+  background-color: rgba(34, 37, 38, 0.05);
+  color: #e96900;
+  font-family: "Fira Code", Consolas, "Lucida Console", "Courier", monospace, "Helvetica Neue", Helvetica, Arial sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0 2px;
+  padding: 3px 4px 1px;
+  border-radius: 4px;
+}
+
+/* strike */
+del {
+  color: #999;
+  text-decoration: line-through;
+}
+
+/* hightlight */
+mark {
+  color: #282c34;
+  font-weight: 500;
+  padding: 1px 5px 2px;
+  border-radius: 2px;
+}
+
+/* hyperlink */
+a {
+  background-color: inherit;
+  color: #2484c1;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a img {
+  border: none;
+}
+
+/* code fences */
+.md-fences {
+  font-family: "Fira Code", Consolas, "Lucida Console", "Courier", monospace, "Helvetica Neue", Helvetica, Arial sans-serif;
+  background-color: #222526;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-left: 10px;
+  padding-right: 10px;
+  -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+          box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  margin-bottom: 2.10526rem;
+  border: none;
+  border-radius: 6px;
+}
+
+.md-fences[contenteditable="false"]:active, .md-fences[contenteditable="false"]:focus {
+  -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+          box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.md-fences .code-tooltip {
+  background-color: #222526;
+  border-radius: 4px;
+}
+
+.md-fences span {
+  color: #abb2bf;
+}
+
+.md-fences .code-tooltip .ty-input {
+  color: #fff;
+  font-weight: 500;
+}
+
+.ty-show .autoComplt-list li.active {
+  background-color: #3e4249;
+}
+
+/* code container */
+.cm-s-inner {
+  background-color: #222526;
+}
+
+.cm-s-inner .CodeMirror-gutters {
+  background-color: #222526;
+  border: none;
+}
+
+.cm-s-inner .CodeMirror-guttermarker,
+.cm-s-inner .CodeMirror-guttermarker-subtle,
+.cm-s-inner .CodeMirror-linenumber {
+  color: #737984;
+}
+
+.cm-s-inner .CodeMirror-cursor {
+  border-left: 1px solid #528bff !important;
+}
+
+.cm-s-inner div.CodeMirror-selected {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.cm-s-inner.CodeMirror-focused div.CodeMirror-selected {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.cm-s-inner .CodeMirror-line::-moz-selection,
+.cm-s-inner .CodeMirror-line > span::-moz-selection,
+.cm-s-inner .CodeMirror-line > span > span::-moz-selection {
+  background-color: #bac6e9;
+}
+
+.cm-s-inner .CodeMirror-line::selection,
+.cm-s-inner .CodeMirror-line > span::selection,
+.cm-s-inner .CodeMirror-line > span > span::selection {
+  background-color: #bac6e9;
+}
+
+.cm-s-inner .CodeMirror-activeline-background {
+  background: rgba(0, 0, 0, 0);
+}
+
+.cm-s-inner .CodeMirror-matchingbracket {
+  text-decoration: underline;
+  color: white !important;
+}
+
+.cm-s-inner .CodeMirror-selected,
+.cm-s-inner .CodeMirror-selectedtext {
+  background-color: #404859 !important;
+}
+
+/* code fences color */
+.cm-s-inner .cm-keyword {
+  color: #c678dd !important;
+}
+
+.cm-s-inner .cm-operator {
+  color: #56b6c2 !important;
+}
+
+.cm-s-inner .cm-variable {
+  color: #d19a66 !important;
+}
+
+.cm-s-inner .cm-variable-2 {
+  color: #e06c75 !important;
+}
+
+.cm-s-inner .cm-variable-3 {
+  color: #e06c75 !important;
+}
+
+.cm-s-inner .cm-builtin {
+  color: #e8bf6a !important;
+}
+
+.cm-s-inner .cm-atom {
+  color: #d19a66 !important;
+}
+
+.cm-s-inner .cm-number {
+  color: #d19a66 !important;
+}
+
+.cm-s-inner .cm-def {
+  color: #e06c75 !important;
+}
+
+.cm-s-inner .cm-string {
+  color: #98c379 !important;
+}
+
+.cm-s-inner .cm-string-2 {
+  color: #80cbc4 !important;
+}
+
+.cm-s-inner .cm-comment {
+  color: #629755 !important;
+}
+
+.cm-s-inner .cm-tag {
+  color: #e06c75 !important;
+}
+
+.cm-s-inner .cm-meta {
+  color: #e06c75 !important;
+}
+
+.cm-s-inner .cm-attribute {
+  color: #d19a66 !important;
+}
+
+.cm-s-inner .cm-property {
+  color: #61afef !important;
+}
+
+.cm-s-inner .cm-qualifier {
+  color: #decb6b !important;
+}
+
+.cm-s-inner .cm-error {
+  color: #fff !important;
+  background-color: #ec5f67 !important;
+}
+
+.cm-s-inner .cm-tag.cm-bracket {
+  color: #abb2bf !important;
+}
+
+/* scrollbar */
+::-webkit-scrollbar-thumb {
+  background: -webkit-gradient(linear, left bottom, right top, from(#41b782), to(#86d169)) !important;
+  background: linear-gradient(to top right, #41b782, #86d169) !important;
+  border-radius: 4px;
+}
+
+/* find dialog */
+#typora-quick-open {
+  background-color: #222526;
+  color: #abc0d0;
+}
+
+#typora-quick-open .typora-quick-open-item.active {
+  background-color: #3e4249 !important;
+}
+
+#typora-quick-open .ty-quick-open-category-title {
+  border-top: 1px solid rgba(171, 192, 208, 0.1) !important;
+}
+
+/* modal dialog */
+#common-dialog .modal-dialog .modal-content {
+  -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+          box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  background-color: #222526;
+  border: none;
+  border-radius: 6px;
+}
+
+#common-dialog .modal-dialog .modal-content .modal-footer .btn-default:hover {
+  background-color: #3e4249 !important;
+}
+
+/* preferences */
+.ty-preferences {
+  font-family: "Fira Code", Consolas, "Lucida Console", "Courier", monospace, "Helvetica Neue", Helvetica, Arial sans-serif;
+  color: #282c34;
+}
+
+.ty-preferences .window-header h2 {
+  font-size: 1.6rem;
+}
+
+.ty-preferences .sidebar {
+  font-size: 1.4rem;
+}
+
+.ty-preferences .sidebar .nav-group-item.active,
+.ty-preferences .sidebar .nav-group-item:active {
+  color: #efefef;
+  background-color: #2f845e;
+}
+
+/* sidebar includes file-tree,articles and outline*/
+.html-for-mac #typora-sidebar {
+  -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+          box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+/* focus mode/typewriter mode notification  */
+#md-notification {
+  background-color: #222526 !important;
+}
+
+#md-notification #ty-surpress-mode-warning-close-btn:hover {
+  background-color: #3e4249 !important;
+}
+
+/* Unibody sidebar */
+#top-titlebar,
+#top-titlebar * {
+  color: inherit;
+}
+
+#top-titlebar #w-min:hover,
+#top-titlebar #w-max-group .toolbar-icon:hover {
+  background-color: #67769660;
+}
+
+#megamenu-menu-sidebar {
+  color: #282c34;
+}
+
+#megamenu-menu-sidebar .megamenu-menu-list li {
+  font-size: 0.8rem;
+}
+
+#megamenu-menu-sidebar .megamenu-menu-list li a.active {
+  background-color: #3e4249 !important;
+}
+
+#megamenu-menu-sidebar .megamenu-menu-list li a#m-saved {
+  background-color: transparent !important;
+}
+
+.megamenu-opened .megamenu-menu {
+  left: 0;
+}
+
+#megamenu-content {
+  color: #000;
+}
+
+/* sidebar */
+#typora-sidebar {
+  background-color: #181a1b;
+  border-right: 1px solid rgba(171, 192, 208, 0.1);
+}
+
+#typora-sidebar #sidebar-loading-template.file-list-item {
+  border-bottom: transparent !important;
+  background-color: rgba(171, 192, 208, 0.1);
+}
+
+#typora-sidebar .info-panel-tab-wrapper .info-panel-tab:hover {
+  color: inherit;
+}
+
+#typora-sidebar .info-panel-tab-wrapper .info-panel-tab .info-panel-tab-border {
+  background-color: #2f845e;
+  border-radius: 4px;
+}
+
+#typora-sidebar .sidebar-osx-tab .sidebar-tabs {
+  border-bottom-color: transparent;
+}
+
+#typora-sidebar #sidebar-content .file-list-item {
+  border-bottom: 1px solid rgba(171, 192, 208, 0.1);
+}
+
+#typora-sidebar #sidebar-content .file-list-item.active {
+  background-color: #222526;
+  border-left: 4px solid #2f845e;
+}
+
+#typora-sidebar #sidebar-content .ty-sidebar-search-panel {
+  border-bottom: 1px solid rgba(171, 192, 208, 0.1);
+}
+
+#typora-sidebar #sidebar-content .ty-sidebar-search-panel .searchpanel-search-option-btn {
+  background-color: #222526;
+}
+
+#typora-sidebar #sidebar-content .sidebar-content-content .file-node-content {
+  line-height: 1.15789rem;
+  font-size: 0.84211rem;
+  color: #abc0d0 !important;
+}
+
+#typora-sidebar #sidebar-content .sidebar-content-content .file-tree-node:not(.file-node-root):hover > .file-node-background {
+  border-left: 4px solid #2f845e;
+  background-color: #222526;
+}
+
+#typora-sidebar #sidebar-content .sidebar-content-content .file-tree-node.active > .file-node-background {
+  border-color: #2f845e;
+  background-color: #222526;
+}
+
+#typora-sidebar #sidebar-content .sidebar-content-content #file-library-list-children .file-library-file-node:hover {
+  border-left: 4px solid #2f845e;
+  background-color: #222526;
+}
+
+#typora-sidebar #sidebar-content #outline-content .no-collapse-outline .outline-item {
+  line-height: 1.15789rem;
+  font-size: 0.84211rem;
+}
+
+#typora-sidebar #sidebar-content #outline-content .outline-expander:before {
+  color: inherit;
+  font-size: 14px;
+  top: auto;
+  content: "\f0da";
+  font-family: FontAwesome;
+}
+
+#typora-sidebar #sidebar-content #outline-content .outline-expander:hover:before,
+#typora-sidebar #sidebar-content #outline-content .outline-item-open > .outline-item > .outline-expander:before {
+  content: "\f0d7";
+}
+
+#typora-sidebar #sidebar-content #outline-content .outline-item:hover {
+  background-color: #3e4249 !important;
+}
+
+#typora-sidebar #ty-sidebar-footer {
+  border-top: 1px solid rgba(171, 192, 208, 0.1);
+}
+
+#typora-sidebar #ty-sidebar-footer .sidebar-footer-item:hover {
+  background-color: #3e4249 !important;
+}
+
+#typora-sidebar #ty-sidebar-footer #sidebar-files-menu {
+  -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+          box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+/* dropdown menu */
+.dropdown-menu {
+  background-color: #222526;
+  -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+          box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  border-top: 1px solid rgba(171, 192, 208, 0.1);
+}
+
+.dropdown-menu > .show + .menuitem-group-label.show {
+  border-top: 1px solid rgba(171, 192, 208, 0.1) !important;
+}
+
+.dropdown-menu > .active > a,
+.dropdown-menu > li > a:hover,
+.dropdown-menu .menu-style-btn.active {
+  background-color: #3e4249 !important;
+}
+
+.dropdown-menu li a {
+  color: #abc0d0 !important;
+}
+
+.dropdown-menu li a:hover {
+  background-color: #3e4249 !important;
+}
+
+.dropdown-menu .divider {
+  border-color: #222526;
+}
+
+/* sidebar-files-menu,toc-dropmenu,suggest common */
+#sidebar-files-menu,
+#toc-dropmenu,
+.auto-suggest-container {
+  background-color: #222526;
+  -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+          box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  border: none;
+}
+
+#toc-dropmenu .outline-item:hover {
+  background-color: #3e4249 !important;
+}
+
+/* emoji,fences,word suggest */
+.auto-suggest-container {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.auto-suggest-container li.active, .auto-suggest-container li:hover {
+  background-color: #3e4249 !important;
+}
+
+/** source code mode */
+#typora-source {
+  font-family: "Fira Code", Consolas, "Lucida Console", "Courier", monospace, "Helvetica Neue", Helvetica, Arial sans-serif;
+  color: #6a6a6a;
+}
+
+#typora-source .cm-s-typora-default .cm-header,
+#typora-source .cm-s-typora-default .cm-property,
+#typora-source .CodeMirror.cm-s-typora-default div.CodeMirror-cursor {
+  color: #428bca;
+}
+
+#typora-source .cm-s-typora-default .cm-atom,
+#typora-source .cm-s-typora-default .cm-number {
+  color: #777777;
+}
+
+#typora-source .CodeMirror-selected,
+#typora-source .CodeMirror-selectedtext {
+  background-color: #b5d6fc !important;
+}
+
+.typora-node .file-list-item-parent-loc,
+.typora-node .file-list-item-time,
+.typora-node .file-list-item-summary {
+  font-family: "Times New Roman", Times, Georgia, serif;
+}
 
 
-</style>
+ :root {--mermaid-font-zoom:1.25em ;} 
+</style><title>nio</title>
 </head>
-<body class='typora-export' >
-<div  id='write'  class = 'is-node'><h3><a name='header-n0' class='md-header-anchor '></a>NIO</h3><h4><a name='header-n4' class='md-header-anchor '></a>任务</h4><pre class="md-fences md-end-block" lang="html"> <div class="CodeMirror cm-s-inner CodeMirror-wrap"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 4px;"></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 30px; min-height: 112px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">1.NIO简介</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">2.Channel和Buffer</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">3.Selector</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">4.Buffer的使用</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">5.FileChannel的使用</span></pre></div></div></div></div></div><div style="position: absolute; height: 30px; width: 1px; border-bottom: 0px solid transparent; top: 112px;"></div><div class="CodeMirror-gutters" style="display: none; height: 142px;"></div></div></div></pre><h4><a name='header-n6' class='md-header-anchor '></a><strong>目标</strong></h4><pre class="md-fences md-end-block" lang="html"> <div class="CodeMirror cm-s-inner CodeMirror-wrap"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 4px;"></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 30px; min-height: 90px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">1.了解NIO</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">2.了解Channel和Buffer</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">3.理解Selector的作用</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">4.掌握FileChannel的使用</span></pre></div></div></div></div></div><div style="position: absolute; height: 30px; width: 1px; border-bottom: 0px solid transparent; top: 90px;"></div><div class="CodeMirror-gutters" style="display: none; height: 120px;"></div></div></div></pre><h4><a name='header-n8' class='md-header-anchor '></a> </h4><h4><a name='header-n9' class='md-header-anchor '></a>第一节：NIO简介</h4><p>​	java.nio全称java non-blocking IO，是指jdk1.4 及以上版本里提供的新api（New IO） ，为所有的原始类型（boolean类型除外）提供<a href='https://baike.baidu.com/item/%E7%BC%93%E5%AD%98'>缓存</a>支持的数据容器，使用它可以提供非阻塞式的高伸缩性网络。</p><p><strong>Java NIO 由以下几个核心部分组成：</strong></p><ul><li>Channels：通道</li><li>Buffers：缓冲区</li><li>Selectors：选择器</li></ul><p><strong>NIO和普通IO的区别</strong></p><p><img src='pic/004.png' alt='' /></p><h4><a name='header-n28' class='md-header-anchor '></a>第二节：Channel 和 Buffer</h4><p>​	基本上，所有的 IO 在NIO 中都从一个Channel 开始。Channel 有点象流。 数据可以从Channel读到Buffer中，也可以从Buffer 写到Channel中。这里有个图示：</p><p></p><p><img src='pic/001.png' alt='' /></p><p>JAVA NIO中的一些主要Channel的实现：</p><ul><li>FileChannel</li><li>DatagramChannel</li><li>SocketChannel</li><li>ServerSocketChannel</li></ul><p>Java NIO里关键的Buffer实现：</p><ul><li>ByteBuffer</li><li>CharBuffer</li><li>DoubleBuffer</li><li>FloatBuffer</li><li>IntBuffer</li><li>LongBuffer</li><li>ShortBuffer</li></ul><h4><a name='header-n74' class='md-header-anchor '></a>第三节：Selector</h4><p>​	Selector允许单线程处理多个 Channel。如果你的应用打开了多个连接（通道），但每个连接的流量都很低，使用Selector就会很方便。例如，在一个聊天服务器中。</p><p>这是在一个单线程中使用一个Selector处理3个Channel的图示：</p><p>​	<img src='pic/002.png' alt='' /></p><p></p><p>要使用Selector，得向Selector注册Channel，然后调用它的select()方法。这个方法会一直阻塞到某个注册的通道有事件就绪。一旦这个方法返回，线程就可以处理这些事件，事件的例子有如新连接进来，数据接收等。</p><p></p><h4><a name='header-n87' class='md-header-anchor '></a>第四节：Buffer的使用</h4><p>​	Java NIO中的Buffer用于和NIO通道进行交互。如你所知，数据是从通道读入缓冲区，从缓冲区写入到通道中的。</p><p>​	缓冲区本质上是一块可以写入数据，然后可以从中读取数据的内存。这块内存被包装成NIO Buffer对象，并提供了一组方法，用来方便的访问该块内存。</p><h5><a name='header-n92' class='md-header-anchor '></a>4.1 Buffer的基本用法</h5><p>使用Buffer读写数据一般遵循以下四个步骤：</p><ol start='' ><li><p>写入数据到Buffer</p></li><li><p>调flip()方法</p></li><li><p>从Buffer中读取数据</p></li><li><p>调用clear()方法或者compact()方法</p><p>当向buffer写入数据时，buffer会记录下写了多少数据。一旦要读取数据，需要通过flip()方法将Buffer从写模式切换到读模式。在读模式下，可以读取之前写入到buffer的所有数据。</p><p>一旦读完了所有的数据，就需要清空缓冲区，让它可以再次被写入。有两种方式能清空缓冲区：调用clear()或compact()方法。clear()方法会清空整个缓冲区。compact()方法只会清除已经读过的数据。任何未读的数据都被移到缓冲区的起始处，新写入的数据将放到缓冲区未读数据的后面。</p></li></ol><p>案例一：使用ByteBuffer</p><pre class="md-fences md-end-block" lang="java"> <div class="CodeMirror cm-s-inner CodeMirror-wrap"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 4px;"></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 30px; min-height: 370px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">public</span> <span class="cm-keyword">static</span> <span class="cm-variable-3">void</span> <span class="cm-def">main</span>(<span class="cm-variable-3">String</span>[] <span class="cm-variable">args</span>) {</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-comment">//1创建缓冲区</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-variable">ByteBuffer</span> <span class="cm-variable">buffer</span><span class="cm-operator">=</span><span class="cm-variable">ByteBuffer</span>.<span class="cm-variable">allocate</span>(<span class="cm-number">1024</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-comment">//2向缓冲区中添加内容</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-variable">buffer</span>.<span class="cm-variable">put</span>(<span class="cm-string">"helloworld"</span>.<span class="cm-variable">getBytes</span>());</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-comment">//3切换为读模式</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-variable">buffer</span>.<span class="cm-variable">flip</span>();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-comment">//4获取单个字节</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-comment">//buffer.get();</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-comment">//5获取多个字节</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-variable-3">byte</span>[] <span class="cm-variable">data</span><span class="cm-operator">=</span><span class="cm-keyword">new</span> <span class="cm-variable-3">byte</span>[<span class="cm-variable">buffer</span>.<span class="cm-variable">limit</span>()];</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-variable">buffer</span>.<span class="cm-variable">get</span>(<span class="cm-variable">data</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-variable">System</span>.<span class="cm-variable">out</span>.<span class="cm-variable">println</span>(<span class="cm-keyword">new</span> <span class="cm-variable-3">String</span>(<span class="cm-variable">data</span>));</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-comment">//6清空缓冲区</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-variable">buffer</span>.<span class="cm-variable">clear</span>();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span>}</span></pre></div></div></div></div></div><div style="position: absolute; height: 30px; width: 1px; border-bottom: 0px solid transparent; top: 370px;"></div><div class="CodeMirror-gutters" style="display: none; height: 400px;"></div></div></div></pre><h5><a name='header-n115' class='md-header-anchor '></a>4.2 Buffer的capacity,position和limit</h5><p>缓冲区本质上是一块可以写入数据，然后可以从中读取数据的内存。这块内存被包装成NIO Buffer对象，并提供了一组方法，用来方便的访问该块内存。</p><p>为了理解Buffer的工作原理，需要熟悉它的三个属性：</p><ul><li>capacity</li><li>position</li><li>limit</li></ul><p>position和limit的含义取决于Buffer处在读模式还是写模式。不管Buffer处在什么模式，capacity的含义总是一样的。</p><p>这里有一个关于capacity，position和limit在读写模式中的说明。</p><p><img src='pic/003.png' alt='' /></p><p><strong>capacity</strong></p><p>作为一个内存块，Buffer有一个固定的大小值，也叫“capacity”.你只能往里写capacity个byte、long，char等类型。一旦Buffer满了，需要将其清空（通过读数据或者清除数据）才能继续写数据往里写数据。</p><p><strong>position</strong></p><p>当你写数据到Buffer中时，position表示当前的位置。初始的position值为0.当一个byte、long等数据写到Buffer后， position会向前移动到下一个可插入数据的Buffer单元。position最大可为capacity – 1.</p><p>当读取数据时，也是从某个特定位置读。当将Buffer从写模式切换到读模式，position会被重置为0. 当从Buffer的position处读取数据时，position向前移动到下一个可读的位置。</p><p><strong>limit</strong></p><p>在写模式下，Buffer的limit表示你最多能往Buffer里写多少数据。 写模式下，limit等于Buffer的capacity。</p><p>当切换Buffer到读模式时， limit表示你最多能读到多少数据。因此，当切换Buffer到读模式时，limit会被设置成写模式下的position值。换句话说，你能读到之前写入的所有数据（limit被设置成已写数据的数量，这个值在写模式下就是position）</p><p><strong>Buffer的分配</strong></p><p>要想获得一个Buffer对象首先要进行分配。 每一个Buffer类都有一个allocate方法。下面是一个分配48字节capacity的ByteBuffer的例子。</p><pre class="md-fences md-end-block" lang="java"> <div class="CodeMirror cm-s-inner CodeMirror-wrap"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 4px;"></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 30px; min-height: 22px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">ByteBuffer</span> <span class="cm-variable">buf</span> <span class="cm-operator">=</span> <span class="cm-variable">ByteBuffer</span>.<span class="cm-variable">allocate</span>(<span class="cm-number">1024</span>);<span class="cm-comment">//创建缓冲区，大小为1024个字节</span></span></pre></div></div></div></div></div></div><div style="position: absolute; height: 30px; width: 1px; border-bottom: 0px solid transparent; top: 22px;"></div><div class="CodeMirror-gutters" style="display: none; height: 52px;"></div></div></div></pre><p></p><p><strong>向Buffer中写数据</strong></p><p>写数据到Buffer有两种方式：</p><ul><li>从Channel写到Buffer。后面案例使用</li><li>通过Buffer的put()方法写到Buffer里。</li></ul><p>从Channel写到Buffer的例子</p><p>通过put方法写Buffer的例子：</p><pre class='md-fences mock-cm' style='display:block;position:relative'>buf.put(127);</pre><p></p><p>put方法有很多版本，允许你以不同的方式把数据写入到Buffer中。例如， 写到一个指定的位置，或者把一个字节数组写入到Buffer。 更多Buffer实现的细节参考JavaDoc。</p><p><strong>flip()方法</strong></p><p>flip方法将Buffer从写模式切换到读模式。调用flip()方法会将position设回0，并将limit设置成之前position的值。</p><p>换句话说，position现在用于标记读的位置，limit表示之前写进了多少个byte、char等 —— 现在能读取多少个byte、char等。</p><p><strong>从Buffer中读取数据</strong></p><p>从Buffer中读取数据有两种方式：</p><ol start='' ><li>从Buffer读取数据到Channel。后面案例使用</li><li>使用get()方法从Buffer中读取数据。</li></ol><p>从Buffer读取数据到Channel的例子：</p><p>使用get()方法从Buffer中读取数据的例子</p><pre class="md-fences md-end-block" lang="java"> <div class="CodeMirror cm-s-inner CodeMirror-wrap"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 4px;"></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 30px; min-height: 22px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable-3">byte</span> <span class="cm-variable">aByte</span> <span class="cm-operator">=</span> <span class="cm-variable">buf</span>.<span class="cm-variable">get</span>();</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 30px; width: 1px; border-bottom: 0px solid transparent; top: 22px;"></div><div class="CodeMirror-gutters" style="display: none; height: 52px;"></div></div></div></pre><p>get方法有很多版本，允许你以不同的方式从Buffer中读取数据。例如，从指定position读取，或者从Buffer中读取数据到字节数组。更多Buffer实现的细节参考JavaDoc。</p><p><strong>rewind()方法</strong></p><p>Buffer.rewind()将position设回0，所以你可以重读Buffer中的所有数据。limit保持不变，仍然表示能从Buffer中读取多少个元素（byte、char等）。</p><p><strong>clear()与compact()方法</strong></p><p>一旦读完Buffer中的数据，需要让Buffer准备好再次被写入。可以通过clear()或compact()方法来完成。</p><p>如果调用的是clear()方法，position将被设回0，limit被设置成 capacity的值。换句话说，Buffer 被清空了。Buffer中的数据并未清除，只是这些标记告诉我们可以从哪里开始往Buffer里写数据。</p><p>如果Buffer中有一些未读的数据，调用clear()方法，数据将“被遗忘”，意味着不再有任何标记会告诉你哪些数据被读过，哪些还没有。</p><p>如果Buffer中仍有未读的数据，且后续还需要这些数据，但是此时想要先先写些数据，那么使用compact()方法。</p><p>compact()方法将所有未读的数据拷贝到Buffer起始处。然后将position设到最后一个未读元素正后面。limit属性依然像clear()方法一样，设置成capacity。现在Buffer准备好写数据了，但是不会覆盖未读的数据。</p><p><strong>mark()与reset()方法</strong></p><p>通过调用Buffer.mark()方法，可以标记Buffer中的一个特定position。之后可以通过调用Buffer.reset()方法恢复到这个position。例如：</p><pre class="md-fences md-end-block" lang="java"> <div class="CodeMirror cm-s-inner CodeMirror-wrap"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 4px;"></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 30px; min-height: 45px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">buffer</span>.<span class="cm-variable">mark</span>(); <span class="cm-comment">//添加标记</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">buffer</span>.<span class="cm-variable">reset</span>();<span class="cm-comment">//恢复到标记位置</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 30px; width: 1px; border-bottom: 0px solid transparent; top: 45px;"></div><div class="CodeMirror-gutters" style="display: none; height: 75px;"></div></div></div></pre><h4><a name='header-n224' class='md-header-anchor '></a>第五节：FileChannel的使用</h4><p>Java NIO中的FileChannel是一个连接到文件的通道。可以通过文件通道读写文件。</p><p>FileChannel无法设置为非阻塞模式，它总是运行在阻塞模式下。</p><p><strong>5.1打开FileChannel</strong></p><p>​	在使用FileChannel之前，必须先打开它。但是，我们无法直接打开一个FileChannel，需要通过使用一个InputStream、OutputStream或RandomAccessFile来获取一个FileChannel实例。下面是通过RandomAccessFile打开FileChannel的示例：</p><pre class="md-fences md-end-block" lang="java"> <div class="CodeMirror cm-s-inner CodeMirror-wrap"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 4px;"></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 30px; min-height: 45px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">RandomAccessFile</span> <span class="cm-variable">aFile</span> <span class="cm-operator">=</span> <span class="cm-keyword">new</span> <span class="cm-variable">RandomAccessFile</span>(<span class="cm-string">"data/nio-data.txt"</span>, <span class="cm-string">"rw"</span>);</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">FileChannel</span> <span class="cm-variable">inChannel</span> <span class="cm-operator">=</span> <span class="cm-variable">aFile</span>.<span class="cm-variable">getChannel</span>();</span></pre></div></div></div></div></div><div style="position: absolute; height: 30px; width: 1px; border-bottom: 0px solid transparent; top: 45px;"></div><div class="CodeMirror-gutters" style="display: none; height: 75px;"></div></div></div></pre><p><strong>5.2从FileChannel读取数据</strong></p><p>​	调用多个read()方法之一从FileChannel中读取数据。如：</p><pre class="md-fences md-end-block" lang="java"> <div class="CodeMirror cm-s-inner CodeMirror-wrap"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 4px;"></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 30px; min-height: 45px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">ByteBuffer</span> <span class="cm-variable">buf</span> <span class="cm-operator">=</span> <span class="cm-variable">ByteBuffer</span>.<span class="cm-variable">allocate</span>(<span class="cm-number">48</span>);</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable-3">int</span> <span class="cm-variable">bytesRead</span> <span class="cm-operator">=</span> <span class="cm-variable">inChannel</span>.<span class="cm-variable">read</span>(<span class="cm-variable">buf</span>);</span></pre></div></div></div></div></div><div style="position: absolute; height: 30px; width: 1px; border-bottom: 0px solid transparent; top: 45px;"></div><div class="CodeMirror-gutters" style="display: none; height: 75px;"></div></div></div></pre><p>首先，分配一个Buffer。从FileChannel中读取的数据将被读到Buffer中。</p><p>然后，调用FileChannel.read()方法。该方法将数据从FileChannel读取到Buffer中。read()方法返回的int值表示了有多少字节被读到了Buffer中。如果返回-1，表示到了文件末尾。</p><p><strong>5.3 向FileChannel写数据</strong></p><p>使用FileChannel.write()方法向FileChannel写数据，该方法的参数是一个Buffer。如：</p><pre class="md-fences md-end-block" lang="java"> <div class="CodeMirror cm-s-inner CodeMirror-wrap"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 4px;"></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 30px; min-height: 179px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable-3">String</span> <span class="cm-variable">newData</span> <span class="cm-operator">=</span> <span class="cm-string">"New String to write to file..."</span> <span class="cm-operator">+</span> <span class="cm-variable">System</span>.<span class="cm-variable">currentTimeMillis</span>();</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">ByteBuffer</span> <span class="cm-variable">buf</span> <span class="cm-operator">=</span> <span class="cm-variable">ByteBuffer</span>.<span class="cm-variable">allocate</span>(<span class="cm-number">48</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">buf</span>.<span class="cm-variable">clear</span>();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">buf</span>.<span class="cm-variable">put</span>(<span class="cm-variable">newData</span>.<span class="cm-variable">getBytes</span>());</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">buf</span>.<span class="cm-variable">flip</span>();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">while</span>(<span class="cm-variable">buf</span>.<span class="cm-variable">hasRemaining</span>()) {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-variable">channel</span>.<span class="cm-variable">write</span>(<span class="cm-variable">buf</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre></div></div></div></div></div><div style="position: absolute; height: 30px; width: 1px; border-bottom: 0px solid transparent; top: 179px;"></div><div class="CodeMirror-gutters" style="display: none; height: 209px;"></div></div></div></pre><p>​	注意FileChannel.write()是在while循环中调用的。因为无法保证write()方法一次能向FileChannel写入多少字节，因此需要重复调用write()方法，直到Buffer中已经没有尚未写入通道的字节。</p><p><strong>5.4 关闭FileChannel</strong></p><p>用完FileChannel后必须将其关闭。如：</p><pre class="md-fences md-end-block" lang="java"> <div class="CodeMirror cm-s-inner CodeMirror-wrap"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 4px;"></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 30px; min-height: 22px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">channel</span>.<span class="cm-variable">close</span>();</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 30px; width: 1px; border-bottom: 0px solid transparent; top: 22px;"></div><div class="CodeMirror-gutters" style="display: none; height: 52px;"></div></div></div></pre><h4><a name='header-n255' class='md-header-anchor '></a>第六节：案例</h4><h5><a name='header-n256' class='md-header-anchor '></a>6.1写入文本文件</h5><pre class="md-fences md-end-block" lang="java"> <div class="CodeMirror cm-s-inner CodeMirror-wrap"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 4px;"></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 30px; min-height: 314px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">//1创建FileOutputStream</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">FileOutputStream</span> <span class="cm-variable">fos</span><span class="cm-operator">=</span><span class="cm-keyword">new</span> <span class="cm-variable">FileOutputStream</span>(<span class="cm-string">"d:\\out.txt"</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">//2获取通道</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">FileChannel</span> <span class="cm-variable">outChannel</span> <span class="cm-operator">=</span> <span class="cm-variable">fos</span>.<span class="cm-variable">getChannel</span>();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">//3创建缓冲区</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">ByteBuffer</span> <span class="cm-variable">buffer</span><span class="cm-operator">=</span><span class="cm-variable">ByteBuffer</span>.<span class="cm-variable">allocate</span>(<span class="cm-number">1024</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">//4向缓冲区中放入数据</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">buffer</span>.<span class="cm-variable">put</span>(<span class="cm-string">"hello world"</span>.<span class="cm-variable">getBytes</span>());</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">//5写入</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">buffer</span>.<span class="cm-variable">flip</span>();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">outChannel</span>.<span class="cm-variable">write</span>(<span class="cm-variable">buffer</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">//6关闭</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">outChannel</span>.<span class="cm-variable">close</span>();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">System</span>.<span class="cm-variable">out</span>.<span class="cm-variable">println</span>(<span class="cm-string">"写入完毕"</span>);</span></pre></div></div></div></div></div><div style="position: absolute; height: 30px; width: 1px; border-bottom: 0px solid transparent; top: 314px;"></div><div class="CodeMirror-gutters" style="display: none; height: 344px;"></div></div></div></pre><p></p><h5><a name='header-n260' class='md-header-anchor '></a>6.2读取文本文件</h5><pre class="md-fences md-end-block" lang="java"> <div class="CodeMirror cm-s-inner CodeMirror-wrap"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 4px;"></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 30px; min-height: 336px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">//1创建FileInputStream</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">FileInputStream</span> <span class="cm-variable">fis</span><span class="cm-operator">=</span><span class="cm-keyword">new</span> <span class="cm-variable">FileInputStream</span>(<span class="cm-string">"d:\\out.txt"</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">//2创建通道</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">FileChannel</span> <span class="cm-variable">inChannel</span> <span class="cm-operator">=</span> <span class="cm-variable">fis</span>.<span class="cm-variable">getChannel</span>();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">//3创建缓冲区</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">ByteBuffer</span> <span class="cm-variable">buffer</span><span class="cm-operator">=</span><span class="cm-variable">ByteBuffer</span>.<span class="cm-variable">allocate</span>(<span class="cm-number">1024</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable-3">int</span> <span class="cm-variable">len</span><span class="cm-operator">=</span><span class="cm-variable">inChannel</span>.<span class="cm-variable">read</span>(<span class="cm-variable">buffer</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">System</span>.<span class="cm-variable">out</span>.<span class="cm-variable">println</span>(<span class="cm-variable">len</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">//4处理数据</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">buffer</span>.<span class="cm-variable">flip</span>();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable-3">String</span> <span class="cm-variable">data</span><span class="cm-operator">=</span><span class="cm-keyword">new</span> <span class="cm-variable-3">String</span>(<span class="cm-variable">buffer</span>.<span class="cm-variable">array</span>(),<span class="cm-number">0</span>,<span class="cm-variable">len</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">System</span>.<span class="cm-variable">out</span>.<span class="cm-variable">println</span>(<span class="cm-variable">data</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">//5关闭</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">inChannel</span>.<span class="cm-variable">close</span>();</span></pre></div></div></div></div></div><div style="position: absolute; height: 30px; width: 1px; border-bottom: 0px solid transparent; top: 336px;"></div><div class="CodeMirror-gutters" style="display: none; height: 366px;"></div></div></div></pre><p></p><h5><a name='header-n264' class='md-header-anchor '></a>6.3复制图片</h5><pre class="md-fences md-end-block" lang="java"> <div class="CodeMirror cm-s-inner CodeMirror-wrap"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 4px;"></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 30px; min-height: 426px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">//1创建通道</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">FileChannel</span> <span class="cm-variable">inChannel</span> <span class="cm-operator">=</span> <span class="cm-variable">FileChannel</span>.<span class="cm-variable">open</span>(<span class="cm-variable">Paths</span>.<span class="cm-variable">get</span>(<span class="cm-string">"d:\\003.jpg"</span>),<span class="cm-variable">StandardOpenOption</span>.<span class="cm-variable">READ</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">FileChannel</span> <span class="cm-variable">outChannel</span><span class="cm-operator">=</span><span class="cm-variable">FileChannel</span>.<span class="cm-variable">open</span>(<span class="cm-variable">Paths</span>.<span class="cm-variable">get</span>(<span class="cm-string">"d:\\haha.jpg"</span>),<span class="cm-variable">StandardOpenOption</span>.<span class="cm-variable">WRITE</span>,<span class="cm-variable">StandardOpenOption</span>.<span class="cm-variable">CREATE</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">//2创建缓冲区</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">ByteBuffer</span> <span class="cm-variable">buffer</span><span class="cm-operator">=</span><span class="cm-variable">ByteBuffer</span>.<span class="cm-variable">allocateDirect</span>(<span class="cm-number">1024</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable-3">int</span> <span class="cm-variable">len</span><span class="cm-operator">=</span><span class="cm-number">0</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">//3复制</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">while</span>((<span class="cm-variable">len</span><span class="cm-operator">=</span><span class="cm-variable">inChannel</span>.<span class="cm-variable">read</span>(<span class="cm-variable">buffer</span>))<span class="cm-operator">!=-</span><span class="cm-number">1</span>){</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">buffer</span>.<span class="cm-variable">flip</span>();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">outChannel</span>.<span class="cm-variable">write</span>(<span class="cm-variable">buffer</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">buffer</span>.<span class="cm-variable">clear</span>();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">//4关闭</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">inChannel</span>.<span class="cm-variable">close</span>();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">outChannel</span>.<span class="cm-variable">close</span>();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">System</span>.<span class="cm-variable">out</span>.<span class="cm-variable">println</span>(<span class="cm-string">"复制完毕"</span>);</span></pre></div></div></div></div></div><div style="position: absolute; height: 30px; width: 1px; border-bottom: 0px solid transparent; top: 426px;"></div><div class="CodeMirror-gutters" style="display: none; height: 456px;"></div></div></div></pre><h5><a name='header-n266' class='md-header-anchor '></a>6.4使用内存映射文件复制大文件</h5><pre class="md-fences md-end-block" lang="java"> <div class="CodeMirror cm-s-inner CodeMirror-wrap"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 4px;"></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 30px; min-height: 246px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">//1创建通道</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">FileChannel</span> <span class="cm-variable">inChannel</span> <span class="cm-operator">=</span> <span class="cm-keyword">new</span> <span class="cm-variable">RandomAccessFile</span>(<span class="cm-string">"d:\\01.wav"</span>, <span class="cm-string">"r"</span>).<span class="cm-variable">getChannel</span>();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">FileChannel</span> <span class="cm-variable">outChannel</span><span class="cm-operator">=</span><span class="cm-keyword">new</span> <span class="cm-variable">RandomAccessFile</span>(<span class="cm-string">"d:\\02.wav"</span>, <span class="cm-string">"rw"</span>).<span class="cm-variable">getChannel</span>();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">//2使用内存映射缓冲区</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">MappedByteBuffer</span> <span class="cm-variable">map</span> <span class="cm-operator">=</span> <span class="cm-variable">inChannel</span>.<span class="cm-variable">map</span>(<span class="cm-variable">MapMode</span>.<span class="cm-variable">READ_ONLY</span>, <span class="cm-number">0</span>,<span class="cm-variable">inChannel</span>.<span class="cm-variable">size</span>());</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">outChannel</span>.<span class="cm-variable">write</span>(<span class="cm-variable">map</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">//3关闭</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">inChannel</span>.<span class="cm-variable">close</span>();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">outChannel</span>.<span class="cm-variable">close</span>();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">System</span>.<span class="cm-variable">out</span>.<span class="cm-variable">println</span>(<span class="cm-string">"复制完毕"</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">System</span>.<span class="cm-variable">out</span>.<span class="cm-variable">println</span>(<span class="cm-variable">inChannel</span>.<span class="cm-variable">getClass</span>().<span class="cm-variable">toString</span>());</span></pre></div></div></div></div></div><div style="position: absolute; height: 30px; width: 1px; border-bottom: 0px solid transparent; top: 246px;"></div><div class="CodeMirror-gutters" style="display: none; height: 276px;"></div></div></div></pre><p>注意：如果文件超过2G,需要分多个文件映射。</p><h4><a name='header-n270' class='md-header-anchor '></a>第七节：课前默写</h4><blockquote><p>1 .使用NIO读取文件的步骤</p><p>2 .使用NIO读取文件的步骤</p></blockquote><h4><a name='header-n276' class='md-header-anchor '></a>第八节：作业</h4><blockquote><p>1 .使用NIO复制文件</p></blockquote><h4><a name='header-n280' class='md-header-anchor '></a>第九节：面试题</h4><blockquote><p>1.简述常见的NIO类及作用</p></blockquote></div>
-</body>
+<body class='typora-export os-windows typora-export-show-outline typora-export-no-collapse-outline'><div class='typora-export-content'>
+<div class="typora-export-sidebar"><div class="outline-content"><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#nio">NIO</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h4"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#回顾">回顾：</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#今天任务">今天任务</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#教学目标"><strong>教学目标</strong></a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#第一节nio简介">第一节：NIO简介</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#第二节channel-和-buffer">第二节：Channel 和 Buffer</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#第三节selector">第三节：Selector</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#第四节buffer的使用">第四节：Buffer的使用</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h5"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#41-buffer的基本用法">4.1 Buffer的基本用法</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h5"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#42-buffer的capacityposition和limit">4.2 Buffer的capacity,position和limit</a></div><ul class="outline-children"></ul></li></ul></li><li class="outline-item-wrapper outline-h4"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#第五节filechannel的使用">第五节：FileChannel的使用</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#第六节案例">第六节：案例</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h5"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#61写入文本文件">6.1写入文本文件</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h5"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#62读取文本文件">6.2读取文本文件</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h5"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#63复制图片">6.3复制图片</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h5"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#64使用内存映射文件复制大文件">6.4使用内存映射文件复制大文件</a></div><ul class="outline-children"></ul></li></ul></li><li class="outline-item-wrapper outline-h4"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#第七节课前默写">第七节：课前默写</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#第八节作业">第八节：作业</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#第九节面试题">第九节：面试题</a></div><ul class="outline-children"></ul></li></ul></li></div></div><div id='write'  class=''><h3 id='nio'><span>NIO</span></h3><h4 id='回顾'><span>回顾：</span></h4><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang=""><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 10px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><span><span>​</span>x</span></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 24px;"></div><div class="CodeMirror-gutters" style="display: none; height: 24px;"></div></div></div></pre><h4 id='今天任务'><span>今天任务</span></h4><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="html"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="html"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 10px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">1.NIO简介</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">2.Channel和Buffer</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">3.Selector</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">4.Buffer的使用</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">5.FileChannel的使用</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 120px;"></div><div class="CodeMirror-gutters" style="display: none; height: 120px;"></div></div></div></pre><h4 id='教学目标'><strong><span>教学目标</span></strong></h4><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="html"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="html"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 10px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">1.了解NIO</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">2.了解Channel和Buffer</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">3.理解Selector的作用</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">4.掌握FileChannel的使用</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 96px;"></div><div class="CodeMirror-gutters" style="display: none; height: 96px;"></div></div></div></pre><p><span>#### </span></p><h4 id='第一节nio简介'><span>第一节：NIO简介</span></h4><p><span>	</span><span>java.nio全称java non-blocking IO，是指jdk1.4 及以上版本里提供的新api（New IO） ，为所有的原始类型（boolean类型除外）提供</span><a href='https://baike.baidu.com/item/%E7%BC%93%E5%AD%98'><span>缓存</span></a><span>支持的数据容器，使用它可以提供非阻塞式的高伸缩性网络。</span></p><p><strong><span>Java NIO 由以下几个核心部分组成：</span></strong></p><ul><li><span>Channels：通道</span></li><li><span>Buffers：缓冲区</span></li><li><span>Selectors：选择器</span></li></ul><p>&nbsp;</p><p><strong><span>NIO和普通IO的区别</span></strong></p><p><img src="pic/004.png" referrerpolicy="no-referrer"></p><h4 id='第二节channel-和-buffer'><span>第二节：Channel 和 Buffer</span></h4><p><span>	</span><span>基本上，所有的 IO 在NIO 中都从一个Channel 开始。Channel 有点象流。 数据可以从Channel读到Buffer中，也可以从Buffer 写到Channel中。这里有个图示：</span></p><p>&nbsp;</p><p><img src="pic/001.png" referrerpolicy="no-referrer"></p><p><span>JAVA NIO中的一些主要Channel的实现：</span></p><ul><li><span>FileChannel</span></li><li><span>DatagramChannel</span></li><li><span>SocketChannel</span></li><li><span>ServerSocketChannel</span></li></ul><p><span>Java NIO里关键的Buffer实现：</span></p><ul><li><span>ByteBuffer</span></li><li><span>CharBuffer</span></li><li><span>DoubleBuffer</span></li><li><span>FloatBuffer</span></li><li><span>IntBuffer</span></li><li><span>LongBuffer</span></li><li><span>ShortBuffer</span></li></ul><h4 id='第三节selector'><span>第三节：Selector</span></h4><p><span>	</span><span>Selector允许单线程处理多个 Channel。如果你的应用打开了多个连接（通道），但每个连接的流量都很低，使用Selector就会很方便。例如，在一个聊天服务器中。</span></p><p><span>这是在一个单线程中使用一个Selector处理3个Channel的图示：</span></p><p><span>	</span><img src="pic/002.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p><p><span>要使用Selector，得向Selector注册Channel，然后调用它的select()方法。这个方法会一直阻塞到某个注册的通道有事件就绪。一旦这个方法返回，线程就可以处理这些事件，事件的例子有如新连接进来，数据接收等。</span></p><p>&nbsp;</p><h4 id='第四节buffer的使用'><span>第四节：Buffer的使用</span></h4><p><span>	</span><span>Java NIO中的Buffer用于和NIO通道进行交互。如你所知，数据是从通道读入缓冲区，从缓冲区写入到通道中的。</span></p><p><span>	</span><span>缓冲区本质上是一块可以写入数据，然后可以从中读取数据的内存。这块内存被包装成NIO Buffer对象，并提供了一组方法，用来方便的访问该块内存。</span></p><h5 id='41-buffer的基本用法'><span>4.1 Buffer的基本用法</span></h5><p><span>使用Buffer读写数据一般遵循以下四个步骤：</span></p><ol start='' ><li><p><span>写入数据到Buffer</span></p></li><li><p><span>调flip()方法</span></p></li><li><p><span>从Buffer中读取数据</span></p></li><li><p><span>调用clear()方法或者compact()方法</span></p><p><span>当向buffer写入数据时，buffer会记录下写了多少数据。一旦要读取数据，需要通过flip()方法将Buffer从写模式切换到读模式。在读模式下，可以读取之前写入到buffer的所有数据。</span></p><p><span>一旦读完了所有的数据，就需要清空缓冲区，让它可以再次被写入。有两种方式能清空缓冲区：调用clear()或compact()方法。clear()方法会清空整个缓冲区。compact()方法只会清除已经读过的数据。任何未读的数据都被移到缓冲区的起始处，新写入的数据将放到缓冲区未读数据的后面。</span></p></li></ol><p><span>案例一：使用ByteBuffer</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="java" style="break-inside: unset;"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="java"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.80005px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">public</span> <span class="cm-keyword">static</span> <span class="cm-variable-3">void</span> <span class="cm-def">main</span>(<span class="cm-variable-3">String</span>[] <span class="cm-variable">args</span>) {</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-comment">//1创建缓冲区</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-variable">ByteBuffer</span> <span class="cm-variable">buffer</span><span class="cm-operator">=</span><span class="cm-variable">ByteBuffer</span>.<span class="cm-variable">allocate</span>(<span class="cm-number">1024</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-comment">//2向缓冲区中添加内容</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-variable">buffer</span>.<span class="cm-variable">put</span>(<span class="cm-string">"helloworld"</span>.<span class="cm-variable">getBytes</span>());</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-comment">//3切换为读模式</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-variable">buffer</span>.<span class="cm-variable">flip</span>();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-comment">//4获取单个字节</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-comment">//buffer.get();</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-comment">//5获取多个字节</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-variable-3">byte</span>[] <span class="cm-variable">data</span><span class="cm-operator">=</span><span class="cm-keyword">new</span> <span class="cm-variable-3">byte</span>[<span class="cm-variable">buffer</span>.<span class="cm-variable">limit</span>()];</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-variable">buffer</span>.<span class="cm-variable">get</span>(<span class="cm-variable">data</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-variable">System</span>.<span class="cm-variable">out</span>.<span class="cm-variable">println</span>(<span class="cm-keyword">new</span> <span class="cm-variable-3">String</span>(<span class="cm-variable">data</span>));</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-comment">//6清空缓冲区</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-variable">buffer</span>.<span class="cm-variable">clear</span>();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span>}</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 540px;"></div><div class="CodeMirror-gutters" style="display: none; height: 540px;"></div></div></div></pre><h5 id='42-buffer的capacityposition和limit'><span>4.2 Buffer的capacity,position和limit</span></h5><p><span>缓冲区本质上是一块可以写入数据，然后可以从中读取数据的内存。这块内存被包装成NIO Buffer对象，并提供了一组方法，用来方便的访问该块内存。</span></p><p><span>为了理解Buffer的工作原理，需要熟悉它的三个属性：</span></p><ul><li><span>capacity</span></li><li><span>position</span></li><li><span>limit</span></li></ul><p><span>position和limit的含义取决于Buffer处在读模式还是写模式。不管Buffer处在什么模式，capacity的含义总是一样的。</span></p><p><span>这里有一个关于capacity，position和limit在读写模式中的说明。</span></p><p><img src="pic/003.png" referrerpolicy="no-referrer"></p><p><strong><span>capacity</span></strong></p><p><span>作为一个内存块，Buffer有一个固定的大小值，也叫“capacity”.你只能往里写capacity个byte、long，char等类型。一旦Buffer满了，需要将其清空（通过读数据或者清除数据）才能继续写数据往里写数据。</span></p><p><strong><span>position</span></strong></p><p><span>当你写数据到Buffer中时，position表示当前的位置。初始的position值为0.当一个byte、long等数据写到Buffer后， position会向前移动到下一个可插入数据的Buffer单元。position最大可为capacity – 1.</span></p><p><span>当读取数据时，也是从某个特定位置读。当将Buffer从写模式切换到读模式，position会被重置为0. 当从Buffer的position处读取数据时，position向前移动到下一个可读的位置。</span></p><p><strong><span>limit</span></strong></p><p><span>在写模式下，Buffer的limit表示你最多能往Buffer里写多少数据。 写模式下，limit等于Buffer的capacity。</span></p><p><span>当切换Buffer到读模式时， limit表示你最多能读到多少数据。因此，当切换Buffer到读模式时，limit会被设置成写模式下的position值。换句话说，你能读到之前写入的所有数据（limit被设置成已写数据的数量，这个值在写模式下就是position）</span></p><p><strong><span>Buffer的分配</span></strong></p><p><span>要想获得一个Buffer对象首先要进行分配。 每一个Buffer类都有一个allocate方法。下面是一个分配48字节capacity的ByteBuffer的例子。</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="java"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="java"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.7998px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">ByteBuffer</span> <span class="cm-variable">buf</span> <span class="cm-operator">=</span> <span class="cm-variable">ByteBuffer</span>.<span class="cm-variable">allocate</span>(<span class="cm-number">1024</span>);<span class="cm-comment">//创建缓冲区，大小为1024个字节</span></span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 72px;"></div><div class="CodeMirror-gutters" style="display: none; height: 72px;"></div></div></div></pre><p>&nbsp;</p><p><strong><span>向Buffer中写数据</span></strong></p><p><span>写数据到Buffer有两种方式：</span></p><ul><li><span>从Channel写到Buffer。后面案例使用</span></li><li><span>通过Buffer的put()方法写到Buffer里。</span></li></ul><p><span>从Channel写到Buffer的例子</span></p><p><span>通过put方法写Buffer的例子：</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang=""><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 10px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">buf.put(127);</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 24px;"></div><div class="CodeMirror-gutters" style="display: none; height: 24px;"></div></div></div></pre><p>&nbsp;</p><p><span>put方法有很多版本，允许你以不同的方式把数据写入到Buffer中。例如， 写到一个指定的位置，或者把一个字节数组写入到Buffer。 更多Buffer实现的细节参考JavaDoc。</span></p><p><strong><span>flip()方法</span></strong></p><p><span>flip方法将Buffer从写模式切换到读模式。调用flip()方法会将position设回0，并将limit设置成之前position的值。</span></p><p><span>换句话说，position现在用于标记读的位置，limit表示之前写进了多少个byte、char等 —— 现在能读取多少个byte、char等。</span></p><p><strong><span>从Buffer中读取数据</span></strong></p><p><span>从Buffer中读取数据有两种方式：</span></p><ol start='' ><li><span>从Buffer读取数据到Channel。后面案例使用</span></li><li><span>使用get()方法从Buffer中读取数据。</span></li></ol><p><span>从Buffer读取数据到Channel的例子：</span></p><p><span>使用get()方法从Buffer中读取数据的例子</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="java"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="java"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 10px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable-3">byte</span> <span class="cm-variable">aByte</span> <span class="cm-operator">=</span> <span class="cm-variable">buf</span>.<span class="cm-variable">get</span>();</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 24px;"></div><div class="CodeMirror-gutters" style="display: none; height: 24px;"></div></div></div></pre><p><span>get方法有很多版本，允许你以不同的方式从Buffer中读取数据。例如，从指定position读取，或者从Buffer中读取数据到字节数组。更多Buffer实现的细节参考JavaDoc。</span></p><p><strong><span>rewind()方法</span></strong></p><p><span>Buffer.rewind()将position设回0，所以你可以重读Buffer中的所有数据。limit保持不变，仍然表示能从Buffer中读取多少个元素（byte、char等）。</span></p><p><strong><span>clear()与compact()方法</span></strong></p><p><span>一旦读完Buffer中的数据，需要让Buffer准备好再次被写入。可以通过clear()或compact()方法来完成。</span></p><p><span>如果调用的是clear()方法，position将被设回0，limit被设置成 capacity的值。换句话说，Buffer 被清空了。Buffer中的数据并未清除，只是这些标记告诉我们可以从哪里开始往Buffer里写数据。</span></p><p><span>如果Buffer中有一些未读的数据，调用clear()方法，数据将“被遗忘”，意味着不再有任何标记会告诉你哪些数据被读过，哪些还没有。</span></p><p><span>如果Buffer中仍有未读的数据，且后续还需要这些数据，但是此时想要先先写些数据，那么使用compact()方法。</span></p><p><span>compact()方法将所有未读的数据拷贝到Buffer起始处。然后将position设到最后一个未读元素正后面。limit属性依然像clear()方法一样，设置成capacity。现在Buffer准备好写数据了，但是不会覆盖未读的数据。</span></p><p><strong><span>mark()与reset()方法</span></strong></p><p><span>通过调用Buffer.mark()方法，可以标记Buffer中的一个特定position。之后可以通过调用Buffer.reset()方法恢复到这个position。例如：</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="java"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="java"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 10px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">buffer</span>.<span class="cm-variable">mark</span>(); <span class="cm-comment">//添加标记</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">buffer</span>.<span class="cm-variable">reset</span>();<span class="cm-comment">//恢复到标记位置</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 48px;"></div><div class="CodeMirror-gutters" style="display: none; height: 48px;"></div></div></div></pre><h4 id='第五节filechannel的使用'><span>第五节：FileChannel的使用</span></h4><p><span>Java NIO中的FileChannel是一个连接到文件的通道。可以通过文件通道读写文件。</span></p><p><span>FileChannel无法设置为非阻塞模式，它总是运行在阻塞模式下。</span></p><p><strong><span>5.1打开FileChannel</span></strong></p><p><span>	</span><span>在使用FileChannel之前，必须先打开它。但是，我们无法直接打开一个FileChannel，需要通过使用一个InputStream、OutputStream或RandomAccessFile来获取一个FileChannel实例。下面是通过RandomAccessFile打开FileChannel的示例：</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="java"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="java"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.80029px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">RandomAccessFile</span> <span class="cm-variable">aFile</span> <span class="cm-operator">=</span> <span class="cm-keyword">new</span> <span class="cm-variable">RandomAccessFile</span>(<span class="cm-string">"data/nio-data.txt"</span>, <span class="cm-string">"rw"</span>);</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">FileChannel</span> <span class="cm-variable">inChannel</span> <span class="cm-operator">=</span> <span class="cm-variable">aFile</span>.<span class="cm-variable">getChannel</span>();</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 120px;"></div><div class="CodeMirror-gutters" style="display: none; height: 120px;"></div></div></div></pre><p><strong><span>5.2从FileChannel读取数据</span></strong></p><p><span>	</span><span>调用多个read()方法之一从FileChannel中读取数据。如：</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="java"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="java"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.7998px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">ByteBuffer</span> <span class="cm-variable">buf</span> <span class="cm-operator">=</span> <span class="cm-variable">ByteBuffer</span>.<span class="cm-variable">allocate</span>(<span class="cm-number">48</span>);</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable-3">int</span> <span class="cm-variable">bytesRead</span> <span class="cm-operator">=</span> <span class="cm-variable">inChannel</span>.<span class="cm-variable">read</span>(<span class="cm-variable">buf</span>);</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 96px;"></div><div class="CodeMirror-gutters" style="display: none; height: 96px;"></div></div></div></pre><p><span>首先，分配一个Buffer。从FileChannel中读取的数据将被读到Buffer中。</span></p><p><span>然后，调用FileChannel.read()方法。该方法将数据从FileChannel读取到Buffer中。read()方法返回的int值表示了有多少字节被读到了Buffer中。如果返回-1，表示到了文件末尾。</span></p><p><strong><span>5.3 向FileChannel写数据</span></strong></p><p><span>使用FileChannel.write()方法向FileChannel写数据，该方法的参数是一个Buffer。如：</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="java"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="java"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.80029px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable-3">String</span> <span class="cm-variable">newData</span> <span class="cm-operator">=</span> <span class="cm-string">"New String to write to file..."</span> <span class="cm-operator">+</span> <span class="cm-variable">System</span>.<span class="cm-variable">currentTimeMillis</span>();</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">ByteBuffer</span> <span class="cm-variable">buf</span> <span class="cm-operator">=</span> <span class="cm-variable">ByteBuffer</span>.<span class="cm-variable">allocate</span>(<span class="cm-number">48</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">buf</span>.<span class="cm-variable">clear</span>();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">buf</span>.<span class="cm-variable">put</span>(<span class="cm-variable">newData</span>.<span class="cm-variable">getBytes</span>());</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">buf</span>.<span class="cm-variable">flip</span>();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">while</span>(<span class="cm-variable">buf</span>.<span class="cm-variable">hasRemaining</span>()) {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-variable">channel</span>.<span class="cm-variable">write</span>(<span class="cm-variable">buf</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 288px;"></div><div class="CodeMirror-gutters" style="display: none; height: 288px;"></div></div></div></pre><p><span>	</span><span>注意FileChannel.write()是在while循环中调用的。因为无法保证write()方法一次能向FileChannel写入多少字节，因此需要重复调用write()方法，直到Buffer中已经没有尚未写入通道的字节。</span></p><p><strong><span>5.4 关闭FileChannel</span></strong></p><p><span>用完FileChannel后必须将其关闭。如：</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="java"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="java"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 10px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">channel</span>.<span class="cm-variable">close</span>();</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 24px;"></div><div class="CodeMirror-gutters" style="display: none; height: 24px;"></div></div></div></pre><h4 id='第六节案例'><span>第六节：案例</span></h4><h5 id='61写入文本文件'><span>6.1写入文本文件</span></h5><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="java" style="break-inside: unset;"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="java"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 10px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">//1创建FileOutputStream</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">FileOutputStream</span> <span class="cm-variable">fos</span><span class="cm-operator">=</span><span class="cm-keyword">new</span> <span class="cm-variable">FileOutputStream</span>(<span class="cm-string">"d:\\out.txt"</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">//2获取通道</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">FileChannel</span> <span class="cm-variable">outChannel</span> <span class="cm-operator">=</span> <span class="cm-variable">fos</span>.<span class="cm-variable">getChannel</span>();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">//3创建缓冲区</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">ByteBuffer</span> <span class="cm-variable">buffer</span><span class="cm-operator">=</span><span class="cm-variable">ByteBuffer</span>.<span class="cm-variable">allocate</span>(<span class="cm-number">1024</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">//4向缓冲区中放入数据</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">buffer</span>.<span class="cm-variable">put</span>(<span class="cm-string">"hello world"</span>.<span class="cm-variable">getBytes</span>());</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">//5写入</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">buffer</span>.<span class="cm-variable">flip</span>();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">outChannel</span>.<span class="cm-variable">write</span>(<span class="cm-variable">buffer</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">//6关闭</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">outChannel</span>.<span class="cm-variable">close</span>();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">System</span>.<span class="cm-variable">out</span>.<span class="cm-variable">println</span>(<span class="cm-string">"写入完毕"</span>);</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 432px;"></div><div class="CodeMirror-gutters" style="display: none; height: 432px;"></div></div></div></pre><p>&nbsp;</p><h5 id='62读取文本文件'><span>6.2读取文本文件</span></h5><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="java" style="break-inside: unset;"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="java"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 10px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">//1创建FileInputStream</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">FileInputStream</span> <span class="cm-variable">fis</span><span class="cm-operator">=</span><span class="cm-keyword">new</span> <span class="cm-variable">FileInputStream</span>(<span class="cm-string">"d:\\out.txt"</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">//2创建通道</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">FileChannel</span> <span class="cm-variable">inChannel</span> <span class="cm-operator">=</span> <span class="cm-variable">fis</span>.<span class="cm-variable">getChannel</span>();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">//3创建缓冲区</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">ByteBuffer</span> <span class="cm-variable">buffer</span><span class="cm-operator">=</span><span class="cm-variable">ByteBuffer</span>.<span class="cm-variable">allocate</span>(<span class="cm-number">1024</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable-3">int</span> <span class="cm-variable">len</span><span class="cm-operator">=</span><span class="cm-variable">inChannel</span>.<span class="cm-variable">read</span>(<span class="cm-variable">buffer</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">System</span>.<span class="cm-variable">out</span>.<span class="cm-variable">println</span>(<span class="cm-variable">len</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">//4处理数据</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">buffer</span>.<span class="cm-variable">flip</span>();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable-3">String</span> <span class="cm-variable">data</span><span class="cm-operator">=</span><span class="cm-keyword">new</span> <span class="cm-variable-3">String</span>(<span class="cm-variable">buffer</span>.<span class="cm-variable">array</span>(),<span class="cm-number">0</span>,<span class="cm-variable">len</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">System</span>.<span class="cm-variable">out</span>.<span class="cm-variable">println</span>(<span class="cm-variable">data</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">//5关闭</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">inChannel</span>.<span class="cm-variable">close</span>();</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 456px;"></div><div class="CodeMirror-gutters" style="display: none; height: 456px;"></div></div></div></pre><p>&nbsp;</p><h5 id='63复制图片'><span>6.3复制图片</span></h5><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="java" style="break-inside: unset;"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="java"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 10px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">//1创建通道</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">FileChannel</span> <span class="cm-variable">inChannel</span> <span class="cm-operator">=</span> <span class="cm-variable">FileChannel</span>.<span class="cm-variable">open</span>(<span class="cm-variable">Paths</span>.<span class="cm-variable">get</span>(<span class="cm-string">"d:\\003.jpg"</span>),<span class="cm-variable">StandardOpenOption</span>.<span class="cm-variable">READ</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">FileChannel</span> <span class="cm-variable">outChannel</span><span class="cm-operator">=</span><span class="cm-variable">FileChannel</span>.<span class="cm-variable">open</span>(<span class="cm-variable">Paths</span>.<span class="cm-variable">get</span>(<span class="cm-string">"d:\\haha.jpg"</span>),<span class="cm-variable">StandardOpenOption</span>.<span class="cm-variable">WRITE</span>,<span class="cm-variable">StandardOpenOption</span>.<span class="cm-variable">CREATE</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">//2创建缓冲区</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">ByteBuffer</span> <span class="cm-variable">buffer</span><span class="cm-operator">=</span><span class="cm-variable">ByteBuffer</span>.<span class="cm-variable">allocateDirect</span>(<span class="cm-number">1024</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable-3">int</span> <span class="cm-variable">len</span><span class="cm-operator">=</span><span class="cm-number">0</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">//3复制</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">while</span>((<span class="cm-variable">len</span><span class="cm-operator">=</span><span class="cm-variable">inChannel</span>.<span class="cm-variable">read</span>(<span class="cm-variable">buffer</span>))<span class="cm-operator">!=-</span><span class="cm-number">1</span>){</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">buffer</span>.<span class="cm-variable">flip</span>();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">outChannel</span>.<span class="cm-variable">write</span>(<span class="cm-variable">buffer</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">buffer</span>.<span class="cm-variable">clear</span>();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">//4关闭</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">inChannel</span>.<span class="cm-variable">close</span>();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">outChannel</span>.<span class="cm-variable">close</span>();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">System</span>.<span class="cm-variable">out</span>.<span class="cm-variable">println</span>(<span class="cm-string">"复制完毕"</span>);</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 624px;"></div><div class="CodeMirror-gutters" style="display: none; height: 624px;"></div></div></div></pre><h5 id='64使用内存映射文件复制大文件'><span>6.4使用内存映射文件复制大文件</span></h5><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="java"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="java"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 10px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">//1创建通道</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">FileChannel</span> <span class="cm-variable">inChannel</span> <span class="cm-operator">=</span> <span class="cm-keyword">new</span> <span class="cm-variable">RandomAccessFile</span>(<span class="cm-string">"d:\\01.wav"</span>, <span class="cm-string">"r"</span>).<span class="cm-variable">getChannel</span>();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">FileChannel</span> <span class="cm-variable">outChannel</span><span class="cm-operator">=</span><span class="cm-keyword">new</span> <span class="cm-variable">RandomAccessFile</span>(<span class="cm-string">"d:\\02.wav"</span>, <span class="cm-string">"rw"</span>).<span class="cm-variable">getChannel</span>();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">//2使用内存映射缓冲区</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">MappedByteBuffer</span> <span class="cm-variable">map</span> <span class="cm-operator">=</span> <span class="cm-variable">inChannel</span>.<span class="cm-variable">map</span>(<span class="cm-variable">MapMode</span>.<span class="cm-variable">READ_ONLY</span>, <span class="cm-number">0</span>,<span class="cm-variable">inChannel</span>.<span class="cm-variable">size</span>());</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">outChannel</span>.<span class="cm-variable">write</span>(<span class="cm-variable">map</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">//3关闭</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">inChannel</span>.<span class="cm-variable">close</span>();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">outChannel</span>.<span class="cm-variable">close</span>();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">System</span>.<span class="cm-variable">out</span>.<span class="cm-variable">println</span>(<span class="cm-string">"复制完毕"</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">System</span>.<span class="cm-variable">out</span>.<span class="cm-variable">println</span>(<span class="cm-variable">inChannel</span>.<span class="cm-variable">getClass</span>().<span class="cm-variable">toString</span>());</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 432px;"></div><div class="CodeMirror-gutters" style="display: none; height: 432px;"></div></div></div></pre><p><span>注意：如果文件超过2G,需要分多个文件映射。</span></p><h4 id='第七节课前默写'><span>第七节：课前默写</span></h4><blockquote><p><span>1 .使用NIO读取文件的步骤</span></p><p><span>2 .使用NIO读取文件的步骤</span></p></blockquote><h4 id='第八节作业'><span>第八节：作业</span></h4><blockquote><p><span>1 .使用NIO复制文件</span></p></blockquote><h4 id='第九节面试题'><span>第九节：面试题</span></h4><blockquote><p><span>1.简述常见的NIO类及作用</span></p></blockquote></div></div>
+
+<script>(function(){var e=document.body.parentElement,t=[],n=null,i=document.body.classList.contains("typora-export-collapse-outline"),r=function(e,t,n){document.addEventListener(e,function(e){if(!e.defaultPrevented)for(var i=e.target;i&&i!=this;i=i.parentNode)if(i.matches(t)){!1===n.call(i,e)&&(e.preventDefault(),e.stopPropagation());break}},!1)};function o(){return e.scrollTop}r("click",".outline-expander",function(e){var t=this.closest(".outline-item-wrapper").classList;return t.contains("outline-item-open")?t.remove("outline-item-open"):t.add("outline-item-open"),d(),!1}),r("click",".outline-item",function(e){var t=this.querySelector(".outline-label");if(location.hash="#"+t.getAttribute("href"),i){var n=this.closest(".outline-item-wrapper").classList;n.contains("outline-item-open")||n.add("outline-item-open"),c(),n.add("outline-item-active")}});var a,s,l=function(){var e=o();n=null;for(var i=0;i<t.length&&t[i][1]-e<60;i++)n=t[i]},c=function(){document.querySelectorAll(".outline-item-active").forEach(e=>e.classList.remove("outline-item-active")),document.querySelectorAll(".outline-item-single.outline-item-open").forEach(e=>e.classList.remove("outline-item-open"))},d=function(){if(n){c();var e=document.querySelector('.outline-label[href="#'+(CSS.escape?CSS.escape(n[0]):n[0])+'"]');if(e)if(i){var t=e.closest(".outline-item-open>ul>.outline-item-wrapper");if(t)t.classList.add("outline-item-active");else{for(var r=(e=e.closest(".outline-item-wrapper")).parentElement.closest(".outline-item-wrapper");r;)r=(e=r).parentElement.closest(".outline-item-wrapper");e.classList.add("outline-item-active")}}else e.closest(".outline-item-wrapper").classList.add("outline-item-active")}};window.addEventListener("scroll",function(e){a&&clearTimeout(a),a=setTimeout(function(){l(),d()},300)});var u=function(){s=setTimeout(function(){!function(){t=[];var e=o();document.querySelector("#write").querySelectorAll("h1, h2, h3, h4, h5, h6").forEach(n=>{var i=n.getAttribute("id");t.push([i,e+n.getBoundingClientRect().y])})}(),l(),d()},300)};window.addEventListener("resize",function(e){s&&clearTimeout(s),u()}),u()})();</script></body>
 </html>
