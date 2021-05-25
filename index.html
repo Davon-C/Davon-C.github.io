@@ -46,13 +46,22 @@
     <style type="text/css">
         @media only screen and (min-width: 768px) {
             #slider_sub {
+                width: 20%;
+                margin-top: 51px;
+                position: absolute;
+                z-index: 1;
+                height: 688px;
+            }
+        }/*
+        @media only screen and (min-width: 768px) {
+            #slider_sub {
                 width: 250px;
                 margin-top: 51px;
                 position: absolute;
                 z-index: 1;
                 height: 688px;
             }
-        }
+        }*/
 
         .mysearch {
             margin: 10px;
@@ -110,7 +119,7 @@
         </li>
     </ul>
     <!--侧边功能栏-->
-    <div class="" id="slider_sub">
+    <div  class="" id="slider_sub">
         <ul class="nav">
 
             <li><a href="#sub1" data-toggle="collapse"> Java基础<span
@@ -579,9 +588,9 @@
         </ul>
     </div>
 </nav>
-<div class="page_main" id="page_main">
-    <iframe name="center_man" id="center_man" frameborder="0"
-            width="1350px" height="999999px" src="center.html"></iframe>
+<div align="right" class="page_main" id="page_main">
+    <iframe name="center_man" id="center_man" frameborder="2px"
+            width=80% height="99999px" display=table-cell src="center.html"></iframe>
 </div>
 
 <div class="right_main" id="right_main">
@@ -589,6 +598,11 @@
 
 </div>
 <div class="go_top" id="go_top"><a id="backtopbutton" href="#top" type="button" class="btn btn-info">返回顶部</a></div>
+
+
+
+
+
 </body>
 
 </html>
