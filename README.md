@@ -20,4 +20,4 @@
 
 ## 其他模块的一些框架技术
 
-Spring，SpringMVC，SpringBoot，MyBatis，Hibernate等等。。。
+Spring，SpringMVC，SpringBoot，SpringCloud, MyBatis，Hibernate等等。。。
