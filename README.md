@@ -1,5 +1,5 @@
 # Chai.BiAngCN.github.io
-好多好多内容源自恩师亦好友----戒饭</br>
+
 博客 https://chai.biangcn.github.io/ 适合Java语言开发服务器入门</br>
 
 # 生命不息，折腾不止！
